@@ -82,6 +82,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'lfcity',
+        'USER': 'caoruchen',
+        'PASSWORD': 'crc',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': "utf8mb4",
+        },
+        'POOL_OPTIONS': {
+            'max_connections': 100,
+        }
     }
 }
 
