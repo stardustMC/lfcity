@@ -1,1 +1,71 @@
 INFO 2025-03-29 13:59:23,605 autoreload 16655 136816686147072 Watching for file changes with StatReloader
+INFO 2025-03-29 18:03:37,608 autoreload 33476 127140269102592 Watching for file changes with StatReloader
+INFO 2025-03-29 18:03:50,474 autoreload 33527 124877999117824 Watching for file changes with StatReloader
+INFO 2025-03-29 18:05:19,468 basehttp 33527 124877933106880 "GET /home/ HTTP/1.1" 200 5088
+INFO 2025-03-29 18:05:19,531 basehttp 33527 124877835065024 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-03-29 18:05:19,534 basehttp 33527 124877843457728 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-03-29 18:05:19,536 basehttp 33527 124877851850432 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-03-29 18:05:19,538 basehttp 33527 124877818279616 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-03-29 18:05:19,538 basehttp 33527 124877835065024 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-03-29 18:05:19,541 basehttp 33527 124877843457728 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-03-29 18:05:19,542 basehttp 33527 124877818279616 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-03-29 18:05:19,543 basehttp 33527 124877851850432 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-03-29 18:05:19,545 basehttp 33527 124877933106880 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-03-29 18:05:19,545 basehttp 33527 124877826672320 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-03-29 18:05:19,547 basehttp 33527 124877826672320 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-03-29 18:05:19,642 basehttp 33527 124877826672320 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-03-29 18:07:52,955 autoreload 33527 124877999117824 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-29 18:07:53,317 autoreload 34195 136075561580032 Watching for file changes with StatReloader
+ERROR 2025-03-29 18:07:56,375 log 34195 136075495597760 Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py", line 11, in get
+    redis.lpush('home', [0, 1, 2, 3, 4])
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/commands/core.py", line 2728, in lpush
+    return self.execute_command("LPUSH", name, *values)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/client.py", line 567, in _execute_command
+    return conn.retry.call_with_retry(
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/retry.py", line 62, in call_with_retry
+    return do()
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/client.py", line 568, in <lambda>
+    lambda: self._send_command_parse_response(
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/client.py", line 541, in _send_command_parse_response
+    conn.send_command(*args, **options)
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/connection.py", line 557, in send_command
+    self._command_packer.pack(*args),
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/connection.py", line 107, in pack
+    for arg in map(self.encode, args):
+  File "/home/caoruchen/anaconda3/envs/lfcity/lib/python3.8/site-packages/redis/_parsers/encoders.py", line 29, in encode
+    raise DataError(
+redis.exceptions.DataError: Invalid input of type: 'list'. Convert to a bytes, string, int or float first.
+ERROR 2025-03-29 18:07:56,378 basehttp 34195 136075495597760 "GET /home/ HTTP/1.1" 500 135843
+INFO 2025-03-29 18:08:22,015 autoreload 34195 136075561580032 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-29 18:08:22,345 autoreload 34302 137572376188416 Watching for file changes with StatReloader
+INFO 2025-03-29 18:08:24,669 basehttp 34302 137572310308544 "GET /home/ HTTP/1.1" 200 5108
+INFO 2025-03-29 18:10:47,558 autoreload 34302 137572376188416 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-29 18:10:47,880 autoreload 34719 132498734872064 Watching for file changes with StatReloader
+INFO 2025-03-29 18:10:51,830 basehttp 34719 132498600228544 "GET /home/ HTTP/1.1" 200 5278
+INFO 2025-03-29 18:11:33,772 autoreload 34719 132498734872064 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-29 18:11:34,120 autoreload 34828 135796216608256 Watching for file changes with StatReloader
+INFO 2025-03-29 18:11:35,823 basehttp 34828 135796150757056 "GET /home/ HTTP/1.1" 200 5298
+INFO 2025-03-29 18:11:47,594 autoreload 34828 135796216608256 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-29 18:11:47,938 autoreload 34878 129237047703040 Watching for file changes with StatReloader
+INFO 2025-03-29 18:11:49,359 basehttp 34878 129236908111552 "GET /home/ HTTP/1.1" 200 5298
+INFO 2025-03-29 18:12:00,390 basehttp 34878 129236908111552 "GET /home/ HTTP/1.1" 200 5088
