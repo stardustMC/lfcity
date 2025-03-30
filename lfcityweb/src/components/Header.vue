@@ -1,88 +1,99 @@
 <template>
-    <div class="header-box">
-      <div class="header">
-        <div class="content">
-          <div class="logo">
-            <router-link to="/"><img src="../assets/logo.svg" alt=""></router-link>
+  <div class="header-box">
+    <div class="header">
+      <div class="content">
+        <div class="logo">
+          <router-link to="/"><img src="../assets/logo.svg" alt="" width="300" height="60"></router-link>
+        </div>
+        <ul class="nav">
+          <li v-for="item in nav.header_list">
+            <router-link :to="item.link">{{ item.name }}</router-link>
+          </li>
+        </ul>
+        <div class="search-warp">
+          <div class="search-area">
+            <input class="search-input" placeholder="请输入关键字..." type="text" autocomplete="off">
+            <div class="hotTags">
+              <router-link to="/search/?words=Vue" target="_blank" class="">Vue</router-link>
+              <router-link to="/search/?words=Python" target="_blank" class="last">Python</router-link>
+            </div>
           </div>
-          <ul class="nav">
-              <li v-for="item in nav.header_list">
-                <router-link :to="item.link">{{item.name}}</router-link>
-              </li>
-          </ul>
-          <div class="search-warp">
-            <div class="search-area">
-              <input class="search-input" placeholder="请输入关键字..." type="text" autocomplete="off">
-              <div class="hotTags">
-                <router-link to="/search/?words=Vue" target="_blank" class="">Vue</router-link>
-                <router-link to="/search/?words=Python" target="_blank" class="last">Python</router-link>
-              </div>
-            </div>
-            <div class="showhide-search" data-show="no"><img class="imv2-search2" src="../assets/search.svg" /></div>
+          <div class="showhide-search" data-show="no"><img class="imv2-search2" src="../assets/search.svg"/></div>
+        </div>
+        <div class="login-bar">
+          <div class="shop-cart full-left">
+            <img src="../assets/cart.svg" alt=""/>
+            <span><router-link to="/cart">购物车</router-link></span>
           </div>
-          <div class="login-bar">
-            <div class="shop-cart full-left">
-              <img src="../assets/cart.svg" alt="" />
-              <span><router-link to="/cart">购物车</router-link></span>
-            </div>
-            <div class="login-box full-left">
-              <span>登录</span>
-              &nbsp;/&nbsp;
-              <span>注册</span>
-            </div>
+          <div class="login-box full-left">
+            <span @click="state.show_login=true">登录</span>
+            &nbsp;/&nbsp;
+            <span>注册</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <el-dialog :width="600" v-model="state.show_login">
+    <Login></Login>
+  </el-dialog>
 </template>
 
 
 <script setup>
 import nav from "../api/nav.js"
+import {reactive} from "vue";
+import Login from "./Login.vue";
 
-const get_header_list = ()=>{
-  nav.get_header_list();
-  console.log(nav.header_list)
-}
-get_header_list();
+const state = reactive({
+  show_login: false,
+})
+
+nav.get_header_list();
 
 </script>
 
 <style scoped>
-.header-box{
+.header-box {
   height: 72px;
 }
-.header{
+
+.header {
   width: 100%;
   height: 72px;
   box-shadow: 0 0.5px 0.5px 0 #c9c9c9;
   position: fixed;
-  top:0;
+  top: 0;
   left: 0;
-  right:0;
+  right: 0;
   margin: auto;
   z-index: 99;
   background: #fff;
 }
-.header .content{
+
+.header .content {
   max-width: 1366px;
   width: 100%;
   margin: 0 auto;
 }
-.header .content .logo a{
+
+.header .content .logo a {
 }
-.header .content .logo{
+
+.header .content .logo {
   height: 72px;
   line-height: 72px;
   margin: 0 20px;
   float: left;
   cursor: pointer; /* 设置光标的形状为爪子 */
 }
-.header .content .logo img{
+
+.header .content .logo img {
   vertical-align: middle;
   margin: -40px;
 }
-.header .nav li{
+
+.header .nav li {
   float: left;
   height: 80px;
   line-height: 80px;
@@ -91,19 +102,23 @@ get_header_list();
   color: #4a4a4a;
   cursor: pointer;
 }
-.header .nav li span{
+
+.header .nav li span {
   padding-bottom: 16px;
   padding-left: 5px;
   padding-right: 5px;
 }
-.header .nav li span a{
+
+.header .nav li span a {
   display: inline-block;
 }
-.header .nav li .this{
+
+.header .nav li .this {
   color: #4a4a4a;
   border-bottom: 4px solid #ffc210;
 }
-.header .nav li:hover span{
+
+.header .nav li:hover span {
   color: #000;
 }
 
@@ -113,6 +128,7 @@ get_header_list();
   float: left;
   margin-left: 24px;
 }
+
 .search-warp .showhide-search {
   width: 20px;
   height: 24px;
@@ -124,6 +140,7 @@ get_header_list();
   padding: 0 8px;
   border-radius: 18px;
 }
+
 .search-warp .showhide-search i {
   display: block;
   height: 24px;
@@ -133,6 +150,7 @@ get_header_list();
   line-height: 24px;
   width: 20px;
 }
+
 .search-area {
   float: right;
   position: relative;
@@ -150,6 +168,7 @@ get_header_list();
   -moz-transition: width 0.3s;
   transition: width 0.3s;
 }
+
 .search-area .search-input {
   padding: 8px 12px;
   font-size: 14px;
@@ -168,15 +187,18 @@ get_header_list();
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .search-area .search-input.w100 {
   width: 100%;
 }
+
 .search-area .hotTags {
   display: inline-block;
   position: absolute;
   top: 0;
   right: 32px;
 }
+
 .search-area .hotTags a {
   display: inline-block;
   padding: 4px 8px;
@@ -190,24 +212,30 @@ get_header_list();
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .search-area .hotTags a:hover {
   color: #F21F1F;
 }
+
 .search-area input::-webkit-input-placeholder {
   color: #A6A6A6;
 }
+
 .search-area input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #A6A6A6;
 }
+
 .search-area input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #A6A6A6;
 }
+
 .search-area input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #A6A6A6;
 }
+
 .search-area .btn_search {
   float: left;
   cursor: pointer;
@@ -218,6 +246,7 @@ get_header_list();
   -moz-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
+
 .search-area .search-area-result {
   position: absolute;
   left: 0;
@@ -234,15 +263,19 @@ get_header_list();
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
+
 .search-area .search-area-result.hot-hide {
   top: 47px;
 }
+
 .search-area .search-area-result.hot-hide .hot {
   display: none;
 }
+
 .search-area .search-area-result.hot-hide .history {
   border-top: 0;
 }
+
 .search-area .search-area-result h2 {
   font-size: 12px;
   color: #1c1f21;
@@ -250,10 +283,12 @@ get_header_list();
   margin-bottom: 8px;
   font-weight: 700;
 }
+
 .search-area .search-area-result .hot {
   padding: 12px 0 8px 12px;
   box-sizing: border-box;
 }
+
 .search-area .search-area-result .hot .hot-item {
   background: rgba(84, 92, 99, 0.1);
   border-radius: 12px;
@@ -266,10 +301,12 @@ get_header_list();
   font-size: 12px;
   color: #545c63;
 }
+
 .search-area .search-area-result .history {
   border-top: 1px solid rgba(28, 31, 33, 0.1);
   box-sizing: border-box;
 }
+
 .search-area .search-area-result .history li {
   height: 40px;
   line-height: 40px;
@@ -280,6 +317,7 @@ get_header_list();
   color: #787d82;
   cursor: pointer;
 }
+
 .search-area .search-area-result .history li:hover,
 .search-area .search-area-result .history li .light {
   color: #1c1f21;
@@ -287,12 +325,13 @@ get_header_list();
 }
 
 
-.header .login-bar{
+.header .login-bar {
   margin-top: 20px;
   height: 80px;
   float: right;
 }
-.header .login-bar .shop-cart{
+
+.header .login-bar .shop-cart {
   float: left;
   margin-right: 20px;
   border-radius: 17px;
@@ -304,27 +343,33 @@ get_header_list();
   line-height: 32px;
   text-align: center;
 }
-.header .login-bar .shop-cart:hover{
+
+.header .login-bar .shop-cart:hover {
   background: #f0f0f0;
 }
-.header .login-bar .shop-cart img{
+
+.header .login-bar .shop-cart img {
   width: 15px;
   margin-right: 4px;
   margin-left: 6px;
 }
-.header .login-bar .shop-cart span{
+
+.header .login-bar .shop-cart span {
   margin-right: 6px;
 }
-.header .login-bar .login-box{
+
+.header .login-bar .login-box {
   float: left;
   height: 28px;
   line-height: 30px;
 }
-.header .login-bar .login-box span{
+
+.header .login-bar .login-box span {
   color: #4a4a4a;
   cursor: pointer;
 }
-.header .login-bar .login-box span:hover{
+
+.header .login-bar .login-box span:hover {
   color: #000000;
 }
 </style>
