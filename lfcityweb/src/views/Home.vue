@@ -1,9 +1,3 @@
-<script setup>
-
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
-</script>
-
 <template>
   <div class="home">
     <Header></Header>
@@ -13,6 +7,15 @@ import Footer from "../components/Footer.vue";
     <Footer></Footer>
   </div>
 </template>
+
+<script setup>
+import http from '../utils/http.js'
+
+// http.get("/home/").then(response=>{
+//   console.log(response.data);
+// })
+</script>
+
 
 <style scoped>
 

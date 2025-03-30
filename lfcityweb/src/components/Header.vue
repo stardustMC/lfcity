@@ -6,11 +6,13 @@
             <router-link to="/"><img src="../assets/logo.svg" alt=""></router-link>
           </div>
           <ul class="nav">
-              <li><router-link to="">免费课</router-link></li>
-              <li><router-link to="">项目课</router-link></li>
-              <li><router-link to="">学位课</router-link></li>
-              <li><router-link to="">习题库</router-link></li>
-              <li><router-link to="">路飞学城</router-link></li>
+              <li v-for="item in nav.header_list">
+                <router-link :to="item.link">{{item.name}}</router-link>
+              </li>
+<!--              <li><router-link to="">项目课</router-link></li>-->
+<!--              <li><router-link to="">学位课</router-link></li>-->
+<!--              <li><router-link to="">习题库</router-link></li>-->
+<!--              <li><router-link to="">路飞学城</router-link></li>-->
           </ul>
           <div class="search-warp">
             <div class="search-area">
@@ -40,6 +42,18 @@
 
 
 <script setup>
+import nav from "../api/nav.js"
+
+const get_header_list = ()=>{
+  nav.get_header_list();
+  console.log(nav.header_list)
+}
+get_header_list();
+
+const get_footer_list = ()=>{
+  nav.get_footer_list();
+}
+get_footer_list();
 
 </script>
 

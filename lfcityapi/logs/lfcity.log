@@ -69,3 +69,37 @@ INFO 2025-03-29 18:11:47,594 autoreload 34828 135796216608256 /home/caoruchen/De
 INFO 2025-03-29 18:11:47,938 autoreload 34878 129237047703040 Watching for file changes with StatReloader
 INFO 2025-03-29 18:11:49,359 basehttp 34878 129236908111552 "GET /home/ HTTP/1.1" 200 5298
 INFO 2025-03-29 18:12:00,390 basehttp 34878 129236908111552 "GET /home/ HTTP/1.1" 200 5088
+INFO 2025-03-30 06:13:52,983 autoreload 19395 132005308540416 Watching for file changes with StatReloader
+INFO 2025-03-30 06:14:01,712 basehttp 19395 132005242328768 "GET /home/ HTTP/1.1" 200 41
+INFO 2025-03-30 06:14:48,653 basehttp 19395 132005242328768 "GET /home/ HTTP/1.1" 200 81
+INFO 2025-03-30 06:14:51,552 basehttp 19395 132005242328768 "GET /home/ HTTP/1.1" 200 85
+INFO 2025-03-30 06:17:55,843 basehttp 19395 132005242328768 "GET /home/ HTTP/1.1" 200 85
+INFO 2025-03-30 06:17:59,856 basehttp 19395 132005242328768 "GET /home/ HTTP/1.1" 200 85
+INFO 2025-03-30 06:20:51,761 autoreload 19395 132005308540416 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/settings/dev.py changed, reloading.
+INFO 2025-03-30 06:20:52,113 autoreload 19964 135182334486016 Watching for file changes with StatReloader
+INFO 2025-03-30 06:20:55,415 basehttp 19964 135182268487360 "GET /home/ HTTP/1.1" 200 85
+INFO 2025-03-30 06:30:33,173 basehttp 19964 135182268487360 "GET /home/ HTTP/1.1" 200 85
+INFO 2025-03-30 06:30:34,024 autoreload 19964 135182334486016 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/settings/dev.py changed, reloading.
+INFO 2025-03-30 06:30:34,357 autoreload 20384 132126043321856 Watching for file changes with StatReloader
+INFO 2025-03-30 06:30:37,708 basehttp 20384 132125977470656 "GET /home/ HTTP/1.1" 200 85
+INFO 2025-03-30 07:10:32,875 autoreload 20384 132126043321856 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/settings/dev.py changed, reloading.
+INFO 2025-03-30 07:10:33,341 autoreload 23967 128246120150528 Watching for file changes with StatReloader
+INFO 2025-03-30 07:14:19,504 autoreload 23967 128246120150528 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/models.py changed, reloading.
+INFO 2025-03-30 07:14:19,942 autoreload 25146 132114856871424 Watching for file changes with StatReloader
+INFO 2025-03-30 07:17:31,746 autoreload 25146 132114856871424 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/models.py changed, reloading.
+INFO 2025-03-30 07:17:32,186 autoreload 26359 136718298002944 Watching for file changes with StatReloader
+INFO 2025-03-30 07:21:57,936 autoreload 26359 136718298002944 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/models.py changed, reloading.
+INFO 2025-03-30 07:21:58,304 autoreload 26574 136303208384000 Watching for file changes with StatReloader
+INFO 2025-03-30 07:31:37,993 autoreload 26574 136303208384000 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/models.py changed, reloading.
+INFO 2025-03-30 07:31:38,388 autoreload 30072 125153600759296 Watching for file changes with StatReloader
+INFO 2025-03-30 07:31:53,623 autoreload 30072 125153600759296 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/models.py changed, reloading.
+INFO 2025-03-30 07:31:53,932 autoreload 30165 124749429368320 Watching for file changes with StatReloader
+INFO 2025-03-30 08:02:31,441 autoreload 30165 124749429368320 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-30 08:02:31,830 autoreload 34356 132243795740160 Watching for file changes with StatReloader
+INFO 2025-03-30 08:03:04,606 basehttp 34356 132243729405632 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 08:03:15,364 basehttp 34356 132243729405632 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 08:10:34,524 basehttp 34356 132243653129920 "GET /home/ HTTP/1.1" 200 85
+INFO 2025-03-30 08:11:43,119 basehttp 34356 132243644475072 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 08:11:43,120 basehttp 34356 132243653129920 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 08:12:55,842 basehttp 34356 132243653129920 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 08:12:55,845 basehttp 34356 132243644475072 "GET /home/header/ HTTP/1.1" 200 214
