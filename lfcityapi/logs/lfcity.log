@@ -201,3 +201,13 @@ INFO 2025-03-30 09:56:51,783 basehttp 43226 130425766532800 "GET /home/header/ H
 INFO 2025-03-30 09:56:51,787 basehttp 43226 130425774925504 "GET /home/banner/ HTTP/1.1" 200 476
 INFO 2025-03-30 09:56:51,793 basehttp 43226 130425758140096 "GET /home/footer/ HTTP/1.1" 200 386
 INFO 2025-03-30 09:58:20,541 basehttp 43226 130425766532800 "GET /home/banner/ HTTP/1.1" 200 476
+INFO 2025-03-30 11:17:03,445 autoreload 43226 130425856603648 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/utils/constants.py changed, reloading.
+INFO 2025-03-30 11:17:05,003 autoreload 47264 137209731962368 Watching for file changes with StatReloader
+INFO 2025-03-30 11:18:38,505 autoreload 47264 137209731962368 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-30 11:18:38,855 autoreload 47859 134811908240896 Watching for file changes with StatReloader
+INFO 2025-03-30 11:19:04,423 autoreload 47859 134811908240896 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-30 11:19:04,761 autoreload 47935 131974600070656 Watching for file changes with StatReloader
+INFO 2025-03-30 11:20:33,092 autoreload 47935 131974600070656 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-30 11:20:33,467 autoreload 48298 125489359136256 Watching for file changes with StatReloader
+INFO 2025-03-30 11:21:50,719 autoreload 48298 125489359136256 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-30 11:21:51,093 autoreload 48756 135156063868416 Watching for file changes with StatReloader

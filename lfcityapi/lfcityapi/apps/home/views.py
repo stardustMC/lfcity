@@ -1,33 +1,28 @@
-from rest_framework import status
-from rest_framework.generics import ListAPIView
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from django_redis import get_redis_connection
-
-from .serializers import NavModelSerializer, BannerModelSerializer
-from .models import Nav, Banner
 import constants
+from .models import Nav, Banner
+from rest_framework.generics import ListAPIView
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from .serializers import NavModelSerializer, BannerModelSerializer
 
 # Create your views here.
-class HomeAPIView(APIView):
+class CacheListAPIView(ListAPIView):
 
-    def get(self, request):
-        redis = get_redis_connection('default')
-        for i in range(10):
-            redis.lpush('home', i)
-        home = redis.lrange('home', 0, 20)
-        return Response(home, status=status.HTTP_200_OK)
+    @method_decorator(cache_page(constants.LIST_PAGE_CACHE_TIME))
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
 
-class NavHeadListView(ListAPIView):
+# TODO: 缓存了视图，那么在其他地方更改了数据源（例如admin站点）之后需要考虑删除缓存
+class NavHeadListView(CacheListAPIView):
     queryset = Nav.objects.filter(is_active=True, is_display=True, position=constants.NAV_HEAD_POSITION).all()
     serializer_class = NavModelSerializer
 
 
-class NavFooterListView(ListAPIView):
+class NavFooterListView(CacheListAPIView):
     queryset = Nav.objects.filter(is_active=True, is_display=True, position=constants.NAV_FOOT_POSITION).all()
     serializer_class = NavModelSerializer
 
-class BannerListView(ListAPIView):
+class BannerListView(CacheListAPIView):
     queryset = Banner.objects.filter(is_active=True, is_display=True).all()
     serializer_class = BannerModelSerializer
