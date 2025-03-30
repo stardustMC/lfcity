@@ -103,3 +103,101 @@ INFO 2025-03-30 08:11:43,119 basehttp 34356 132243644475072 "GET /home/footer/ H
 INFO 2025-03-30 08:11:43,120 basehttp 34356 132243653129920 "GET /home/header/ HTTP/1.1" 200 214
 INFO 2025-03-30 08:12:55,842 basehttp 34356 132243653129920 "GET /home/footer/ HTTP/1.1" 200 441
 INFO 2025-03-30 08:12:55,845 basehttp 34356 132243644475072 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 08:22:35,367 autoreload 34356 132243795740160 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/settings/dev.py changed, reloading.
+INFO 2025-03-30 08:22:36,436 autoreload 35921 124498769806848 Watching for file changes with StatReloader
+INFO 2025-03-30 08:23:51,656 autoreload 35921 124498769806848 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/settings/dev.py changed, reloading.
+INFO 2025-03-30 08:23:52,029 autoreload 36162 124070938727936 Watching for file changes with StatReloader
+INFO 2025-03-30 08:25:05,214 autoreload 36162 124070938727936 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/settings/dev.py changed, reloading.
+INFO 2025-03-30 08:25:05,594 autoreload 36272 128634768651776 Watching for file changes with StatReloader
+INFO 2025-03-30 08:27:56,036 autoreload 36272 128634768651776 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/settings/dev.py changed, reloading.
+INFO 2025-03-30 08:27:56,408 autoreload 36520 138972838348288 Watching for file changes with StatReloader
+INFO 2025-03-30 08:29:20,723 autoreload 36520 138972838348288 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/urls.py changed, reloading.
+INFO 2025-03-30 08:29:21,073 autoreload 36760 123593112729088 Watching for file changes with StatReloader
+INFO 2025-03-30 08:30:42,269 autoreload 36760 123593112729088 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/urls.py changed, reloading.
+INFO 2025-03-30 08:30:42,591 autoreload 37124 135837113894400 Watching for file changes with StatReloader
+INFO 2025-03-30 08:31:06,128 autoreload 37124 135837113894400 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/urls.py changed, reloading.
+INFO 2025-03-30 08:31:06,483 autoreload 37158 132171897603584 Watching for file changes with StatReloader
+INFO 2025-03-30 09:12:02,691 autoreload 37158 132171897603584 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/urls.py changed, reloading.
+INFO 2025-03-30 09:12:03,111 autoreload 39200 131298112767488 Watching for file changes with StatReloader
+INFO 2025-03-30 09:16:26,692 autoreload 39200 131298112767488 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/models.py changed, reloading.
+INFO 2025-03-30 09:16:27,081 autoreload 40119 128904027727360 Watching for file changes with StatReloader
+INFO 2025-03-30 09:21:34,167 autoreload 40862 131706493621760 Watching for file changes with StatReloader
+INFO 2025-03-30 09:21:50,917 autoreload 40947 136299261801984 Watching for file changes with StatReloader
+WARNING 2025-03-30 09:24:09,860 log 40947 136299109414592 Not Found: /uploads/banner/2025/2.jpg
+WARNING 2025-03-30 09:24:09,862 log 40947 136299084236480 Not Found: /uploads/banner/2025/5.jpg
+WARNING 2025-03-30 09:24:09,865 log 40947 136299101021888 Not Found: /uploads/banner/2025/3.jpg
+WARNING 2025-03-30 09:24:09,870 basehttp 40947 136299109414592 "GET /uploads/banner/2025/2.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:09,871 log 40947 136299092629184 Not Found: /uploads/banner/2025/4.jpg
+WARNING 2025-03-30 09:24:09,874 basehttp 40947 136299084236480 "GET /uploads/banner/2025/5.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:09,875 basehttp 40947 136299101021888 "GET /uploads/banner/2025/3.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:09,876 log 40947 136299189106368 Not Found: /uploads/banner/2025/1.jpg
+WARNING 2025-03-30 09:24:09,876 basehttp 40947 136299092629184 "GET /uploads/banner/2025/4.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:09,878 basehttp 40947 136299189106368 "GET /uploads/banner/2025/1.jpg HTTP/1.1" 404 2511
+INFO 2025-03-30 09:24:09,903 basehttp 40947 136299067451072 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 09:24:09,903 basehttp 40947 136299075843776 "GET /home/header/ HTTP/1.1" 200 214
+WARNING 2025-03-30 09:24:11,279 log 40947 136299084236480 Not Found: /uploads/banner/2025/2.jpg
+WARNING 2025-03-30 09:24:11,284 basehttp 40947 136299084236480 "GET /uploads/banner/2025/2.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:11,286 log 40947 136299189106368 Not Found: /uploads/banner/2025/5.jpg
+WARNING 2025-03-30 09:24:11,290 basehttp 40947 136299189106368 "GET /uploads/banner/2025/5.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:11,293 log 40947 136299101021888 Not Found: /uploads/banner/2025/3.jpg
+WARNING 2025-03-30 09:24:11,294 basehttp 40947 136299101021888 "GET /uploads/banner/2025/3.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:11,297 log 40947 136299092629184 Not Found: /uploads/banner/2025/4.jpg
+WARNING 2025-03-30 09:24:11,297 basehttp 40947 136299092629184 "GET /uploads/banner/2025/4.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:11,302 log 40947 136299109414592 Not Found: /uploads/banner/2025/1.jpg
+WARNING 2025-03-30 09:24:11,302 basehttp 40947 136299109414592 "GET /uploads/banner/2025/1.jpg HTTP/1.1" 404 2511
+INFO 2025-03-30 09:24:11,304 basehttp 40947 136299075843776 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 09:24:11,306 basehttp 40947 136299067451072 "GET /home/header/ HTTP/1.1" 200 214
+WARNING 2025-03-30 09:24:53,449 log 40947 136299189106368 Not Found: /uploads/banner/2025/2.jpg
+WARNING 2025-03-30 09:24:53,464 log 40947 136299084236480 Not Found: /uploads/banner/2025/1.jpg
+WARNING 2025-03-30 09:24:53,471 basehttp 40947 136299084236480 "GET /uploads/banner/2025/1.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:53,472 basehttp 40947 136299189106368 "GET /uploads/banner/2025/2.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:53,473 log 40947 136299101021888 Not Found: /uploads/banner/2025/3.jpg
+WARNING 2025-03-30 09:24:53,476 basehttp 40947 136299101021888 "GET /uploads/banner/2025/3.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:53,476 log 40947 136299092629184 Not Found: /uploads/banner/2025/4.jpg
+WARNING 2025-03-30 09:24:53,479 log 40947 136299109414592 Not Found: /uploads/banner/2025/5.jpg
+WARNING 2025-03-30 09:24:53,479 basehttp 40947 136299092629184 "GET /uploads/banner/2025/4.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:24:53,482 basehttp 40947 136299109414592 "GET /uploads/banner/2025/5.jpg HTTP/1.1" 404 2511
+INFO 2025-03-30 09:24:53,484 basehttp 40947 136299075843776 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 09:24:53,484 basehttp 40947 136299067451072 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 09:25:20,163 autoreload 41238 138387815462400 Watching for file changes with StatReloader
+WARNING 2025-03-30 09:25:22,884 log 41238 138387663087296 Not Found: /uploads/banner/2025/2.jpg
+WARNING 2025-03-30 09:25:22,887 log 41238 138387654694592 Not Found: /uploads/banner/2025/3.jpg
+WARNING 2025-03-30 09:25:22,888 log 41238 138387646301888 Not Found: /uploads/banner/2025/4.jpg
+WARNING 2025-03-30 09:25:22,891 basehttp 41238 138387663087296 "GET /uploads/banner/2025/2.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:25:22,893 log 41238 138387671480000 Not Found: /uploads/banner/2025/1.jpg
+WARNING 2025-03-30 09:25:22,893 basehttp 41238 138387654694592 "GET /uploads/banner/2025/3.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:25:22,896 log 41238 138387637909184 Not Found: /uploads/banner/2025/5.jpg
+WARNING 2025-03-30 09:25:22,896 basehttp 41238 138387646301888 "GET /uploads/banner/2025/4.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:25:22,898 basehttp 41238 138387671480000 "GET /uploads/banner/2025/1.jpg HTTP/1.1" 404 2511
+WARNING 2025-03-30 09:25:22,899 basehttp 41238 138387637909184 "GET /uploads/banner/2025/5.jpg HTTP/1.1" 404 2511
+INFO 2025-03-30 09:25:22,904 basehttp 41238 138387621123776 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 09:25:22,908 basehttp 41238 138387629516480 "GET /home/header/ HTTP/1.1" 200 214
+WARNING 2025-03-30 09:31:19,553 log 41238 138387671480000 Not Found: /uploads/banner/2025/1.jpg
+WARNING 2025-03-30 09:31:19,554 basehttp 41238 138387671480000 "GET /uploads/banner/2025/1.jpg HTTP/1.1" 404 2511
+INFO 2025-03-30 09:34:20,849 basehttp 41238 138387629516480 "GET /uploads/banner/2025/2.jpg HTTP/1.1" 200 176325
+INFO 2025-03-30 09:34:20,855 basehttp 41238 138387671480000 "GET /uploads/banner/2025/1.jpg HTTP/1.1" 200 171972
+INFO 2025-03-30 09:34:20,864 basehttp 41238 138387621123776 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 09:34:20,866 basehttp 41238 138387637909184 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 09:34:20,868 basehttp 41238 138387663087296 "GET /uploads/banner/2025/5.jpg HTTP/1.1" 200 158646
+INFO 2025-03-30 09:34:20,871 basehttp 41238 138387646301888 "GET /uploads/banner/2025/3.jpg HTTP/1.1" 200 443034
+INFO 2025-03-30 09:34:20,875 basehttp 41238 138387654694592 "GET /uploads/banner/2025/4.jpg HTTP/1.1" 200 1312893
+INFO 2025-03-30 09:35:36,574 autoreload 41238 138387815462400 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/models.py changed, reloading.
+INFO 2025-03-30 09:35:37,004 autoreload 41917 139705621362176 Watching for file changes with StatReloader
+INFO 2025-03-30 09:40:29,035 autoreload 41917 139705621362176 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/serializers.py changed, reloading.
+INFO 2025-03-30 09:40:29,411 autoreload 42704 139621176993280 Watching for file changes with StatReloader
+INFO 2025-03-30 09:41:46,711 autoreload 42704 139621176993280 /home/caoruchen/Desktop/lfcity/lfcityapi/lfcityapi/apps/home/views.py changed, reloading.
+INFO 2025-03-30 09:41:47,132 autoreload 43226 130425856603648 Watching for file changes with StatReloader
+INFO 2025-03-30 09:41:57,574 basehttp 43226 130425783842496 "GET /home/banner/ HTTP/1.1" 200 491
+INFO 2025-03-30 09:45:32,943 basehttp 43226 130425774925504 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 09:45:32,993 basehttp 43226 130425774925504 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 09:45:38,639 basehttp 43226 130425774925504 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 09:45:38,643 basehttp 43226 130425766532800 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 09:46:26,096 basehttp 43226 130425774925504 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 09:46:26,098 basehttp 43226 130425766532800 "GET /home/footer/ HTTP/1.1" 200 441
+INFO 2025-03-30 09:47:35,575 basehttp 43226 130425774925504 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 09:47:35,578 basehttp 43226 130425766532800 "GET /home/footer/ HTTP/1.1" 200 386
+INFO 2025-03-30 09:56:49,587 basehttp 43226 130425766532800 "GET /home/banner/ HTTP/1.1" 200 476
+INFO 2025-03-30 09:56:51,783 basehttp 43226 130425766532800 "GET /home/header/ HTTP/1.1" 200 214
+INFO 2025-03-30 09:56:51,787 basehttp 43226 130425774925504 "GET /home/banner/ HTTP/1.1" 200 476
+INFO 2025-03-30 09:56:51,793 basehttp 43226 130425758140096 "GET /home/footer/ HTTP/1.1" 200 386
+INFO 2025-03-30 09:58:20,541 basehttp 43226 130425766532800 "GET /home/banner/ HTTP/1.1" 200 476

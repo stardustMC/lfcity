@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_redis import get_redis_connection
 
-from .serializers import NavModelSerializer
-from .models import Nav
+from .serializers import NavModelSerializer, BannerModelSerializer
+from .models import Nav, Banner
 import constants
 
 # Create your views here.
@@ -27,3 +27,7 @@ class NavHeadListView(ListAPIView):
 class NavFooterListView(ListAPIView):
     queryset = Nav.objects.filter(is_active=True, is_display=True, position=constants.NAV_FOOT_POSITION).all()
     serializer_class = NavModelSerializer
+
+class BannerListView(ListAPIView):
+    queryset = Banner.objects.filter(is_active=True, is_display=True).all()
+    serializer_class = BannerModelSerializer
