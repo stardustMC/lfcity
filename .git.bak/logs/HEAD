@@ -1,0 +1,44 @@
+0000000000000000000000000000000000000000 9f08f65bf955d6516fe70e3c326ed08697362f1e caoruchen <caoruchen@stu.ouc.edu.cn> 1743259649 +0800	commit (initial): first commit: project initializtion
+9f08f65bf955d6516fe70e3c326ed08697362f1e bee2ed0d14a98fe245768155eb2e6ff9190bc626 caoruchen <caoruchen@stu.ouc.edu.cn> 1743268934 +0800	commit: feature: custom exception handler
+bee2ed0d14a98fe245768155eb2e6ff9190bc626 bee2ed0d14a98fe245768155eb2e6ff9190bc626 caoruchen <caoruchen@stu.ouc.edu.cn> 1743269036 +0800	checkout: moving from master to dev
+bee2ed0d14a98fe245768155eb2e6ff9190bc626 a8e20fd849f614c6ab113c7f20b1dba85b6d0105 caoruchen <caoruchen@stu.ouc.edu.cn> 1743270069 +0800	commit: database configured
+a8e20fd849f614c6ab113c7f20b1dba85b6d0105 1051c47ca17ca623c371e758d7d5fe546ffa3132 caoruchen <caoruchen@stu.ouc.edu.cn> 1743272018 +0800	commit: redis configured and tested
+1051c47ca17ca623c371e758d7d5fe546ffa3132 e6f619811c868f62b1da1f748decec8c46d4fb34 caoruchen <caoruchen@stu.ouc.edu.cn> 1743307381 +0800	commit: feature: web router created and global style set
+e6f619811c868f62b1da1f748decec8c46d4fb34 6acaa4f0958fdc9a98e018b2c76b3c39394edd2e caoruchen <caoruchen@stu.ouc.edu.cn> 1743308547 +0800	commit: feature: use element-plus and optimized usage
+6acaa4f0958fdc9a98e018b2c76b3c39394edd2e 46e3cbf1819c25df4d11f1bc81a82c06dc41c900 caoruchen <caoruchen@stu.ouc.edu.cn> 1743314664 +0800	commit: feature: web and backend established connection with CORS
+46e3cbf1819c25df4d11f1bc81a82c06dc41c900 434b3b4ad3b4b39876ad2fab075a400c9eead454 caoruchen <caoruchen@stu.ouc.edu.cn> 1743322543 +0800	commit: feature: nav api and web connected
+434b3b4ad3b4b39876ad2fab075a400c9eead454 e8176314c6f57d6b405735383c9c0c91097acd3e caoruchen <caoruchen@stu.ouc.edu.cn> 1743328778 +0800	commit: feature: home carousel completed
+e8176314c6f57d6b405735383c9c0c91097acd3e 2113d902de8b9b66e9f5f156952c7c483a7a009d caoruchen <caoruchen@stu.ouc.edu.cn> 1743333761 +0800	commit: feature: header/footer/banner data source cached
+2113d902de8b9b66e9f5f156952c7c483a7a009d aec3dfbe302712aa39bf87da79ff735a8180136b caoruchen <caoruchen@stu.ouc.edu.cn> 1743335085 +0800	commit: feature: web login page added
+aec3dfbe302712aa39bf87da79ff735a8180136b aec3dfbe302712aa39bf87da79ff735a8180136b caoruchen <caoruchen@stu.ouc.edu.cn> 1743336813 +0800	checkout: moving from dev to feature/user
+aec3dfbe302712aa39bf87da79ff735a8180136b 94b0c71e4e405f87ae625f12d7341f2838b75b7d caoruchen <caoruchen@stu.ouc.edu.cn> 1743336849 +0800	commit: feature: custom auth User model
+94b0c71e4e405f87ae625f12d7341f2838b75b7d 4abb5254fdb209dcc0df4afe08d5ef9fd440f109 caoruchen <caoruchen@stu.ouc.edu.cn> 1743347814 +0800	commit: feature: jwt token returned when user got authenticated
+4abb5254fdb209dcc0df4afe08d5ef9fd440f109 c648aa3451738665fd429563155e6bd6a1ffc808 caoruchen <caoruchen@stu.ouc.edu.cn> 1743404150 +0800	commit: feature: multi identity login allowed
+c648aa3451738665fd429563155e6bd6a1ffc808 056e8b6fa9a556e9ca78fbaf751307de99e75d5e caoruchen <caoruchen@stu.ouc.edu.cn> 1743409514 +0800	commit: feature: user login and logout; user login state persisted; route guard added;
+056e8b6fa9a556e9ca78fbaf751307de99e75d5e 6344072422d5c06341866655fd61111d333ee0e9 caoruchen <caoruchen@stu.ouc.edu.cn> 1743428840 +0800	commit: feature: user register backend built
+6344072422d5c06341866655fd61111d333ee0e9 31c8f3c5d3cc546ea2edbc725f9d1805c6bf300d caoruchen <caoruchen@stu.ouc.edu.cn> 1743430389 +0800	commit: feature: web page redirected on user register success
+31c8f3c5d3cc546ea2edbc725f9d1805c6bf300d 40277b6066571ea875f4ac5d8414743c49a7da1d caoruchen <caoruchen@stu.ouc.edu.cn> 1743430683 +0800	commit: debug: sync with remote
+40277b6066571ea875f4ac5d8414743c49a7da1d bee2ed0d14a98fe245768155eb2e6ff9190bc626 caoruchen <caoruchen@stu.ouc.edu.cn> 1743430697 +0800	checkout: moving from feature/user to master
+bee2ed0d14a98fe245768155eb2e6ff9190bc626 a5e0ec4befa9239374cf2e1d3e75e82ab77431c9 caoruchen <caoruchen@stu.ouc.edu.cn> 1743430727 +0800	commit: debug: sync with remote
+a5e0ec4befa9239374cf2e1d3e75e82ab77431c9 64ec990bf75262fa6b8a1a72f5f5e92ebd016a5e caoruchen <caoruchen@stu.ouc.edu.cn> 1743430861 +0800	commit (merge): debug: solve conflicts
+64ec990bf75262fa6b8a1a72f5f5e92ebd016a5e 64ec990bf75262fa6b8a1a72f5f5e92ebd016a5e caoruchen <caoruchen@stu.ouc.edu.cn> 1743430887 +0800	checkout: moving from master to feature/course
+64ec990bf75262fa6b8a1a72f5f5e92ebd016a5e f66641b1d91c96a48ce721fa00bf5cfd9237280b caoruchen <caoruchen@stu.ouc.edu.cn> 1743432296 +0800	commit: feature: course model added alone with test data command script
+f66641b1d91c96a48ce721fa00bf5cfd9237280b 3a1585786bceea1dcbed56e054b54138e055f3f4 caoruchen <caoruchen@stu.ouc.edu.cn> 1743443348 +0800	commit: feature: course list and directions and categories api created and displayed
+3a1585786bceea1dcbed56e054b54138e055f3f4 c2a9dab26e38ed268af0eeaa91d959f3e1bcf5b7 caoruchen <caoruchen@stu.ouc.edu.cn> 1743443602 +0800	commit: feature: installed simpleui&ckeditor for enhancement
+c2a9dab26e38ed268af0eeaa91d959f3e1bcf5b7 bac908f64ffc58529be50e1df6ba9e6e2e04e163 caoruchen <caoruchen@stu.ouc.edu.cn> 1743495946 +0800	commit: feature: admin site configured and introduced Aliyun oss storage
+bac908f64ffc58529be50e1df6ba9e6e2e04e163 7c5ce9bbff215c95c278bec7fcdf7161ffd1c4d7 caoruchen <caoruchen@stu.ouc.edu.cn> 1743497743 +0800	commit: feature: course page sorted (could be improved later)
+7c5ce9bbff215c95c278bec7fcdf7161ffd1c4d7 e5b1e710d709717a12eb18da4376789c1ac94553 caoruchen <caoruchen@stu.ouc.edu.cn> 1743602492 +0800	commit: feature: created Course Discount/Activity/ model for dynamic price policy
+e5b1e710d709717a12eb18da4376789c1ac94553 af5ff56ae7be2f98a648c58ee8ff921106d5ad5d caoruchen <caoruchen@stu.ouc.edu.cn> 1743605333 +0800	commit: refactor: rewrite course test data script
+af5ff56ae7be2f98a648c58ee8ff921106d5ad5d 10383482f9d59c80358e896d09c16585105676fd caoruchen <caoruchen@stu.ouc.edu.cn> 1743693595 +0800	commit: feature: web page course discount countdown
+10383482f9d59c80358e896d09c16585105676fd e501b22a3cae8bb6b64b65800d3b4804f8301ae6 caoruchen <caoruchen@stu.ouc.edu.cn> 1743742142 +0800	commit: feature: course detail page disaplayed
+e501b22a3cae8bb6b64b65800d3b4804f8301ae6 64ec990bf75262fa6b8a1a72f5f5e92ebd016a5e caoruchen <caoruchen@stu.ouc.edu.cn> 1743745479 +0800	checkout: moving from feature/course to master
+64ec990bf75262fa6b8a1a72f5f5e92ebd016a5e 106605a43b253752f3887effd01d9bfd964b0933 caoruchen <caoruchen@stu.ouc.edu.cn> 1743745501 +0800	commit: sync with remote
+106605a43b253752f3887effd01d9bfd964b0933 516d8c7e349aaf1b66f2bb2dfbfd80c57b479393 caoruchen <caoruchen@stu.ouc.edu.cn> 1743745579 +0800	commit (merge): solve merge conflicts
+516d8c7e349aaf1b66f2bb2dfbfd80c57b479393 516d8c7e349aaf1b66f2bb2dfbfd80c57b479393 caoruchen <caoruchen@stu.ouc.edu.cn> 1743745614 +0800	checkout: moving from master to feature/cart
+516d8c7e349aaf1b66f2bb2dfbfd80c57b479393 611a870493af2f8b1317ad0c2f6ec823461fbaea caoruchen <caoruchen@stu.ouc.edu.cn> 1743760541 +0800	commit: feature: cart operations api established and cart count displayed in a small badge
+611a870493af2f8b1317ad0c2f6ec823461fbaea e5ed95091116b51e76afa90d825121abcdb5a2d6 caoruchen <caoruchen@stu.ouc.edu.cn> 1743769752 +0800	commit: feature: cart course select and unselect and delete
+e5ed95091116b51e76afa90d825121abcdb5a2d6 45fd9bac2e78baddb8a68c62e3df83de0f073bee caoruchen <caoruchen@stu.ouc.edu.cn> 1743782657 +0800	commit: feature: order page display selected cart list
+45fd9bac2e78baddb8a68c62e3df83de0f073bee 516d8c7e349aaf1b66f2bb2dfbfd80c57b479393 caoruchen <caoruchen@stu.ouc.edu.cn> 1743782682 +0800	checkout: moving from feature/cart to master
+516d8c7e349aaf1b66f2bb2dfbfd80c57b479393 1555409c0a44b8e554ebcbe6b856c0a0b8434f9c caoruchen <caoruchen@stu.ouc.edu.cn> 1743782711 +0800	commit: sync with remote
+1555409c0a44b8e554ebcbe6b856c0a0b8434f9c 73a113ba6d3884f9e167a87b4c52f8de41d5aff8 caoruchen <caoruchen@stu.ouc.edu.cn> 1743782764 +0800	commit (merge): fix: solve conflicts
+                                                                                                                                                               

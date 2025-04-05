@@ -1,0 +1,10 @@
+0000000000000000000000000000000000000000 64ec990bf75262fa6b8a1a72f5f5e92ebd016a5e caoruchen <caoruchen@stu.ouc.edu.cn> 1743430887 +0800	branch: Created from HEAD
+64ec990bf75262fa6b8a1a72f5f5e92ebd016a5e f66641b1d91c96a48ce721fa00bf5cfd9237280b caoruchen <caoruchen@stu.ouc.edu.cn> 1743432296 +0800	commit: feature: course model added alone with test data command script
+f66641b1d91c96a48ce721fa00bf5cfd9237280b 3a1585786bceea1dcbed56e054b54138e055f3f4 caoruchen <caoruchen@stu.ouc.edu.cn> 1743443348 +0800	commit: feature: course list and directions and categories api created and displayed
+3a1585786bceea1dcbed56e054b54138e055f3f4 c2a9dab26e38ed268af0eeaa91d959f3e1bcf5b7 caoruchen <caoruchen@stu.ouc.edu.cn> 1743443602 +0800	commit: feature: installed simpleui&ckeditor for enhancement
+c2a9dab26e38ed268af0eeaa91d959f3e1bcf5b7 bac908f64ffc58529be50e1df6ba9e6e2e04e163 caoruchen <caoruchen@stu.ouc.edu.cn> 1743495946 +0800	commit: feature: admin site configured and introduced Aliyun oss storage
+bac908f64ffc58529be50e1df6ba9e6e2e04e163 7c5ce9bbff215c95c278bec7fcdf7161ffd1c4d7 caoruchen <caoruchen@stu.ouc.edu.cn> 1743497743 +0800	commit: feature: course page sorted (could be improved later)
+7c5ce9bbff215c95c278bec7fcdf7161ffd1c4d7 e5b1e710d709717a12eb18da4376789c1ac94553 caoruchen <caoruchen@stu.ouc.edu.cn> 1743602492 +0800	commit: feature: created Course Discount/Activity/ model for dynamic price policy
+e5b1e710d709717a12eb18da4376789c1ac94553 af5ff56ae7be2f98a648c58ee8ff921106d5ad5d caoruchen <caoruchen@stu.ouc.edu.cn> 1743605333 +0800	commit: refactor: rewrite course test data script
+af5ff56ae7be2f98a648c58ee8ff921106d5ad5d 10383482f9d59c80358e896d09c16585105676fd caoruchen <caoruchen@stu.ouc.edu.cn> 1743693595 +0800	commit: feature: web page course discount countdown
+10383482f9d59c80358e896d09c16585105676fd e501b22a3cae8bb6b64b65800d3b4804f8301ae6 caoruchen <caoruchen@stu.ouc.edu.cn> 1743742142 +0800	commit: feature: course detail page disaplayed
