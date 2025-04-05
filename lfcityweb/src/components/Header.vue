@@ -90,6 +90,7 @@ const on_login = ()=>{
 
 const on_logout = ()=>{
   store.commit("logout");
+  store.commit("cart_count", 0);
   ElMessage.info("用户已注销～")
 }
 </script>

@@ -6,7 +6,7 @@ from django.contrib.auth.backends import ModelBackend, UserModel
 
 def jwt_response_payload_handler(token, user=None, request=None):
     redis = get_redis_connection('cart')
-    cart_count = redis.hlen('cart_%s' % request.user.id)
+    cart_count = redis.hlen('cart_%s' % user.id)
     return {
         'token': token,
         'cart_count': cart_count,
