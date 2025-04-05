@@ -153,6 +153,16 @@ CACHES = {
             },
         }
     },
+    'coupon': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://@localhost:6379/4',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'CONNECTION_POOL_KWARGS': {
+                'max_connections': 100,
+            },
+        }
+    },
 }
 
 # Password validation
