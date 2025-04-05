@@ -201,7 +201,7 @@
               <p class="r rw price"><em>￥</em><span id="js-pay-price">1751.00</span></p>
               <p class="r price-text">应付：</p>
             </div>
-            <span class="r btn btn-red submit-btn">提交订单</span>
+            <span class="r btn btn-red submit-btn" @click="commit_order">提交订单</span>
 					</div>
           <div class="pay-add-sign">
             <ul class="clearfix">
@@ -223,6 +223,7 @@ import Header from "../components/Header.vue"
 import Footer from "../components/Footer.vue"
 import {useStore} from "vuex"
 import {order} from "../api/order.js"
+import {ElMessage} from "element-plus";
 
 let store = useStore();
 
@@ -233,6 +234,15 @@ const get_selected_cart_list = ()=>{
   })
 }
 get_selected_cart_list();
+
+const commit_order = ()=>{
+  let token = localStorage.getItem("token") || sessionStorage.getItem("token");
+  order.commit_order(token).then(response=>{
+    console.log(store.state.cart_count, order.course_list.length);
+    store.commit("cart_count", store.state.cart_count - order.course_list.length);
+    ElMessage.success("订单创建成功，即将跳转到支付页面...");
+  })
+}
 
 // 监听用户选择的支付方式
 watch(

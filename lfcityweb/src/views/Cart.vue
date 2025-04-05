@@ -19,7 +19,7 @@
       </div>
       <div class="cart-body" id="cartBody">
         <div class="cart-body-title">
-          <div class="item-1 l"><el-checkbox v-model="state.checked" @change="select_all">全选</el-checkbox></div>
+          <div class="item-1 l"><el-checkbox :true-value="1" :false-value="0" v-model="state.checked" @change="select_all">全选</el-checkbox></div>
           <div class="item-2 l"><span class="course">课程</span></div>
           <div class="item-3 l"><span>金额</span></div>
           <div class="item-4 l"><span>操作</span></div>
@@ -82,10 +82,6 @@ import cart from "../api/cart"
 import { ElMessage } from 'element-plus'
 import store from "../store/index.js";
 
-let state = reactive({
-  checked: false,
-})
-
 const get_cart_list = ()=>{
   let token = localStorage.getItem("token") || sessionStorage.getItem("token");
   cart.get_cart_list(token).then(response=>{
@@ -94,14 +90,18 @@ const get_cart_list = ()=>{
 };
 get_cart_list();
 
+let state = reactive({
+  checked: 0,
+})
+
 const alter_course_select = (course_id, selected)=>{
   let token = localStorage.getItem("token") || sessionStorage.getItem("token");
   cart.alter_course_select(token, course_id, selected).then(response=>{
-    // console.log(course_id, cart.selected_course_list.length, selected);
+    // console.log(course_id, ":", selected, cart.selected_course_list.length);
     // 当一个课程被勾选，且此时所有课程被勾选，自动全选
-    if(selected && cart.all_selected) state.checked = true;
+    if(selected && cart.all_selected) state.checked = 1;
     // 当一个课程被取消勾选，且此时全选选中（即该课程是唯一一个未被勾选的），取消全选
-    else if(!selected && state.checked) state.checked = false;
+    else if(!selected && state.checked) state.checked = 0;
   }).catch(error=>{
     console.log(error.message);
   })
@@ -120,7 +120,9 @@ const delete_course = (course_id)=>{
 }
 
 const select_all = (selected)=>{
+  // console.log("state变为", selected);
   cart.course_list.forEach(course=>{
+    // console.log("course selected: ", course.selected);
     if(course.selected !== selected){
       course.selected = selected;
       alter_course_select(course.id, selected);
