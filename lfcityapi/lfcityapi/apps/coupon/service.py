@@ -85,9 +85,9 @@ def get_user_enable_coupons(user_id: int):
 
             # 检查优惠门槛
             # 1. 减免的门槛必须低于课程价格 2. 折扣的门槛必须高于课程价格
-            if coupon["discount"] == '1' and course.price < int(coupon["threshold"]):
+            if coupon["discount"] == '1' and course.price > int(coupon["threshold"]):
                 continue
-            if coupon["discount"] == '2' and course.price > int(coupon["threshold"]):
+            if coupon["discount"] == '2' and course.price < int(coupon["threshold"]):
                 continue
 
             avail_coupons.append(coupon)
