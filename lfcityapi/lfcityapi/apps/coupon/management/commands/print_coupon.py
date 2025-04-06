@@ -34,7 +34,7 @@ class Command(BaseCommand):
                 value = randint(50, 99) / 100
 
             now = datetime.now()
-            coupon_type = randint(0, 3)
+            coupon_type = randint(1, 3)
             coupon = Coupon.objects.create(
                 name=faker.job() + " 优惠券",
                 discount=discount,
@@ -50,25 +50,31 @@ class Command(BaseCommand):
             )
             # course direction specified
             if coupon_type == 1:
-                CouponCourseDirection.objects.create(
-                    direction_id=randint(1, self.direction_count),
-                    # we just printed it
-                    coupon_id=coupon.id,
-                    create_time=now,
-                )
+                id_range = list(range(1, self.direction_count))
+                for _ in range(len(id_range) // 4):
+                    CouponCourseDirection.objects.create(
+                        direction_id=id_range.pop(randint(0, len(id_range) - 1)),
+                        # we just printed it
+                        coupon_id=coupon.id,
+                        create_time=now,
+                    )
             # course category specified
             elif coupon_type == 2:
-                CouponCourseCategory.objects.create(
-                    category_id=randint(1, self.category_count),
-                    # we just printed it
-                    coupon_id=coupon.id,
-                    create_time=now,
-                )
+                id_range = list(range(1, self.category_count))
+                for _ in range(len(id_range) // 6):
+                    CouponCourseCategory.objects.create(
+                        category_id=id_range.pop(randint(0, len(id_range) - 1)),
+                        # we just printed it
+                        coupon_id=coupon.id,
+                        create_time=now,
+                    )
             # course specified
             elif coupon_type == 3:
-                CouponCourse.objects.create(
-                    course_id=randint(1, self.course_count),
-                    # we just printed it
-                    coupon_id=coupon.id,
-                    create_time=now,
-                )
+                id_range = list(range(1, self.course_count))
+                for _ in range(len(id_range) // 10):
+                    CouponCourse.objects.create(
+                        course_id=id_range.pop(randint(0, len(id_range) - 1)),
+                        # we just printed it
+                        coupon_id=coupon.id,
+                        create_time=now,
+                    )

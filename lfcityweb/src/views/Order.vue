@@ -53,7 +53,7 @@
               <div class="coupons-box" v-else>
                <div class="content-box">
                 <ul class="nouse-box">
-                 <li class="l" @click="order.coupon=coupon.coupon_id" v-for="coupon in order.coupon_list" :class="{select: order.coupon === coupon.coupon_id}">
+                 <li class="l" @click="order.coupon=order.coupon === key ? -1 : key" v-for="(coupon, key) in order.coupon_list" :class="{select: order.coupon === key}">
                   <div class="detail-box more-del-box">
                    <div class="price-box">
                      <div v-if="coupon.discount === '1'">
@@ -72,58 +72,6 @@
                   </div>
                  </li>
                 </ul>
-<!--                <ul class="use-box">-->
-<!--                 <li class="l useing">-->
-<!--                  <div class="detail-box more-del-box">-->
-<!--                   <div class="price-box">-->
-<!--                    <p class="coupon-price l"> ￥100 </p>-->
-<!--                    <p class="use-inst l">满499可用</p>-->
-<!--                   </div>-->
-<!--                   <div class="use-detail-box">-->
-<!--                    <div class="use-ajust-box">适用于：全部实战课程</div>-->
-<!--                    <div class="use-ajust-box">有效期：2021.06.01-2021.06.18</div>-->
-<!--                   </div>-->
-<!--                  </div>-->
-<!--                 </li>-->
-<!--                 <li class="l">-->
-<!--                  <div class="detail-box more-del-box">-->
-<!--                   <div class="price-box">-->
-<!--                    <p class="coupon-price l"> ￥248 </p>-->
-<!--                    <p class="use-inst l">满999可用</p>-->
-<!--                   </div>-->
-<!--                   <div class="use-detail-box">-->
-<!--                    <div class="use-ajust-box">适用于：全部实战课程</div>-->
-<!--                    <div class="use-ajust-box">有效期：2021.06.01-2021.06.18</div>-->
-<!--                   </div>-->
-<!--                  </div>-->
-<!--                 </li>-->
-<!--                </ul>-->
-<!--                <ul class="overdue-box">-->
-<!--                 <li class="l useing">-->
-<!--                  <div class="detail-box more-del-box">-->
-<!--                   <div class="price-box">-->
-<!--                    <p class="coupon-price l"> ￥100 </p>-->
-<!--                    <p class="use-inst l">满499可用</p>-->
-<!--                   </div>-->
-<!--                   <div class="use-detail-box">-->
-<!--                    <div class="use-ajust-box">适用于：全部实战课程</div>-->
-<!--                    <div class="use-ajust-box">有效期：2021.06.01-2021.06.18</div>-->
-<!--                   </div>-->
-<!--                  </div>-->
-<!--                 </li>-->
-<!--                 <li class="l">-->
-<!--                  <div class="detail-box more-del-box">-->
-<!--                   <div class="price-box">-->
-<!--                    <p class="coupon-price l"> ￥248 </p>-->
-<!--                    <p class="use-inst l">满999可用</p>-->
-<!--                   </div>-->
-<!--                   <div class="use-detail-box">-->
-<!--                    <div class="use-ajust-box">适用于：全部实战课程</div>-->
-<!--                    <div class="use-ajust-box">有效期：2021.06.01-2021.06.18</div>-->
-<!--                   </div>-->
-<!--                  </div>-->
-<!--                 </li>-->
-<!--                </ul>-->
                </div>
               </div>
             </div>
@@ -159,16 +107,16 @@
 				  <div class="row-bottom">
             <div class="row">
               <div class="goods-total-price-box">
-                <p class="r rw price-num"><em>￥</em><span>1811.00</span></p>
-                <p class="r price-text"><span>共<span>5</span>件商品，</span>商品总金额：</p>
+                <p class="r rw price-num"><em>￥</em><span>{{order.total_price.toFixed(2)}}</span></p>
+                <p class="r price-text"><span>共<span>{{order.course_list.length}}</span>件商品，</span>商品总金额：</p>
               </div>
             </div>
             <div class="coupons-discount-box">
-              <p class="r rw price-num">-<em>￥</em><span>60.00</span></p>
+              <p class="r rw price-num">-<em>￥</em><span>{{order.discount_price.toFixed(2)}}</span></p>
               <p class="r price-text">优惠券/积分抵扣：</p>
             </div>
             <div class="pay-price-box clearfix">
-              <p class="r rw price"><em>￥</em><span id="js-pay-price">1751.00</span></p>
+              <p class="r rw price"><em>￥</em><span id="js-pay-price">{{(order.total_price - order.discount_price).toFixed(2)}}</span></p>
               <p class="r price-text">应付：</p>
             </div>
             <span class="r btn btn-red submit-btn" @click="commit_order">提交订单</span>
@@ -221,6 +169,26 @@ const get_enable_coupons = ()=>{
   })
 }
 get_enable_coupons();
+
+watch(()=>order.coupon, ()=>{
+  if(order.coupon < 0) order.discount_price = 0;
+  else{
+    let coupon = order.coupon_list[order.coupon];
+    if(coupon.discount === '1'){
+      // 减免优惠
+      order.discount_price = parseFloat(coupon.calculation.replace("-", ""));
+    }else if(coupon.discount === '2'){
+      // 折扣优惠
+      let factor = parseFloat(coupon.calculation.replace("*", ""));
+      let max_course_price = 0;
+      coupon.enable_courses.forEach(course_id=>{
+        let course = order.course_list.find(course => course.id === course_id);
+        max_course_price = Math.max(max_course_price, course.price);
+      });
+      order.discount_price = max_course_price * (1 - factor);
+    }
+  }
+})
 
 // 监听用户选择的支付方式
 watch(
@@ -1166,7 +1134,7 @@ body {
 }
 
 .pay-box.fixed .row-bottom .bargain-discount-box,.pay-box.fixed .row-bottom .coupons-discount-box,.pay-box.fixed .row-bottom .js-total-hide,.pay-box.fixed .row-bottom .package-discount-box {
-	display: none
+	//display: none
 }
 
 .pay-box.fixed .bargain-discount-box,.pay-box.fixed .coupons-discount-box,.pay-box.fixed .goods-total-price-box,.pay-box.fixed .package-discount-box,.pay-box.fixed .pay-add-sign,.pay-box.fixed .pay-price-box,.pay-box.fixed .redpackage-discount-box {

@@ -36,6 +36,22 @@ def save_coupon_redis(obj: CouponLog):
     else:
         redis.delete(f"{obj.user.id}:{obj.id}")
 
+def get_coupon_dict(user_id: int, user_coupon_id: int):
+    redis = get_redis_connection("coupon")
+    key = f"{user_id}:{user_coupon_id}"
+    if not redis.exists(key):
+        return {}
+    coupon_hash = redis.hgetall(key)
+
+    coupon_dict = {"user_coupon_id": user_coupon_id,}
+    for key, value in coupon_hash.items():
+        key = key.decode()
+        value = value.decode()
+        if key in ('to_direction', 'to_category', 'to_course'):
+            value = json.loads(value)
+        coupon_dict[key] = value
+    return coupon_dict
+
 def get_user_coupons(user_id: int):
     redis = get_redis_connection("coupon")
     keys = redis.keys(f"{user_id}:*")
@@ -43,16 +59,8 @@ def get_user_coupons(user_id: int):
     user_coupon_keys = [item.decode() for item in keys]
     coupons = []
     for user_coupon in user_coupon_keys:
-        coupon_hash = redis.hgetall(user_coupon)
-
-        coupon_item = {"user_coupon_id": int(user_coupon.split(":")[-1])}
-        for key, value in coupon_hash.items():
-            key = key.decode()
-            value = value.decode()
-            if key in ('to_direction', 'to_category', 'to_course'):
-                value = json.loads(value)
-            coupon_item[key] = value
-        coupons.append(coupon_item)
+        user_coupon_id = int(user_coupon.split(":")[-1])
+        coupons.append(get_coupon_dict(user_id, user_coupon_id))
 
     return coupons
 
@@ -80,15 +88,17 @@ def get_user_enable_coupons(user_id: int):
             elif coupon["coupon_type"] == '2' and course.category_id not in [item["category__id"] for item in coupon["to_category"]]:
                 continue
             # 指定课程可用
-            elif coupon["coupon_type"] == '3' and course.id not in [item["course__id"] for item in coupon["to_direction"]]:
+            elif coupon["coupon_type"] == '3' and course.id not in [item["course__id"] for item in coupon["to_course"]]:
                 continue
 
             # 检查优惠门槛
-            # 1. 减免的门槛必须低于课程价格 2. 折扣的门槛必须高于课程价格
-            if coupon["discount"] == '1' and course.price > int(coupon["threshold"]):
+            # 1. 减免的门槛必须低于课程价格
+            if coupon["discount"] == '1' and course.price < int(coupon["threshold"]):
                 continue
-            if coupon["discount"] == '2' and course.price < int(coupon["threshold"]):
+            # 2. 折扣的门槛必须高于课程价格
+            if coupon["discount"] == '2' and course.price > int(coupon["threshold"]):
                 continue
 
+            coupon["enable_courses"].append(course.id)
             avail_coupons.append(coupon)
     return avail_coupons
