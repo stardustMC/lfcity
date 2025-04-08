@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'cart',
     'order',
     'coupon',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -358,6 +359,29 @@ ALIPAY = {
     "app_private_key_path": BASE_DIR / "apps/payment/keys/app_private_key.pem",  # 应用私钥路径
     "alipay_public_key_path": BASE_DIR / "apps/payment/keys/alipay_public_key.pem",  # 支付宝公钥路径
     "return_url": "http://www.lfcity.cn:3000/feedback",  # 同步回调结果通知地址
-    "notify_url": "http://api.lfcity.cn:8000/payments/alipay/notify",  # 异步回调结果通知地址
+    "notify_url": "http://api.lfcity.cn:8000/payment/alipay/notify",  # 异步回调结果通知地址
 }
 ALIPAY_ACCOUNT = "fgtojf0231@sandbox.com"
+
+
+# Celery异步任务队列框架的配置项[注意：django的配置项必须大写，所以这里的所有配置项必须全部大写]
+# 任务队列
+CELERY_BROKER_URL = 'redis://:@127.0.0.1:6379/14'
+# 结果队列
+CELERY_RESULT_BACKEND = 'redis://:@127.0.0.1:6379/15'
+# 时区，与django的时区同步
+CELERY_TIMEZONE = TIME_ZONE
+# 防止死锁
+CELERY_FORCE_EXECV = True
+# 设置并发的worker数量
+CELERYD_CONCURRENCY = 200
+# 设置失败允许重试[这个慎用，如果失败任务无法再次执行成功，会产生指数级别的失败记录]
+CELERY_ACKS_LATE = True
+# 每个worker工作进程最多执行500个任务被销毁，可以防止内存泄漏，500是举例，根据自己的服务器的性能可以调整数值
+CELERYD_MAX_TASKS_PER_CHILD = 500
+# 单个任务的最大运行时间，超时会被杀死[慎用，有大文件操作、长时间上传、下载任务时，需要关闭这个选项，或者设置更长时间]
+CELERYD_TIME_LIMIT = 10 * 60
+# 任务发出后，经过一段时间还未收到acknowledge, 就将任务重新交给其他worker执行
+CELERY_DISABLE_RATE_LIMITS = True
+# celery的任务结果内容格式
+CELERY_ACCEPT_CONTENT = ['json', 'pickle']

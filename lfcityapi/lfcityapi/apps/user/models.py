@@ -6,7 +6,6 @@ from models import BaseModel
 
 # Create your models here.
 class User(AbstractUser):
-
     phone = models.CharField(max_length=11, unique=True, null=True, blank=True, verbose_name="手机号码")
     nickname = models.CharField(max_length=20, default="小白", verbose_name="昵称")
     balance = models.FloatField(default=0.0, verbose_name="余额", help_text="账户余额，可购买课程")
@@ -20,6 +19,19 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+from course.models import Course, CourseChapter, CourseLesson
+class UserCourse(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_courses", verbose_name="用户")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="课程", related_name="course_users")
+    # chapter = models.ForeignKey(CourseChapter, on_delete=models.DO_NOTHING, verbose_name="课程章节", related_name="user_chapters")
+    # lesson = models.ForeignKey(CourseLesson, on_delete=models.DO_NOTHING, verbose_name="课程课时", related_name="user_lessons")
+    study_time = models.IntegerField(default=0, verbose_name="学习时长")
+
+    class Meta:
+        db_table = "lf_user_course"
+        verbose_name = "用户课程关系表"
+        verbose_name_plural = verbose_name
 
 class Credit(BaseModel):
     """积分流水"""

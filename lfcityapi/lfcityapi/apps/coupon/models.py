@@ -3,6 +3,7 @@ from course.models import Course, CourseDirection, CourseCategory
 from order.models import Order
 from user.models import User
 
+
 # Create your models here.
 class Coupon(BaseModel):
     discount_choices = (

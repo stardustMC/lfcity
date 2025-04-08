@@ -48,7 +48,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                     user_id=user_id,
                     pay_type=validated_data['pay_type'],
                     # pay_link="",
-                    pay_time=now,
+                    # pay_time=now,
                     order_status=0,
                     order_number=now.strftime("%Y%m%d") + "%08d" % user_id + "%08d" % redis.incr("order_number")
                 )
@@ -134,22 +134,21 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                 pipe.hset("cart_%s" % user_id, mapping=cart)
                 pipe.execute()
 
-                # 消耗用户的折扣物品
                 if max_discount_price > 0:
-                    # 删除用户优惠券并修改CouponLog记录（标记为已使用）
+                    # 删除用户优惠券并修改CouponLog记录（标记为已使用)
                     if coupon_dict is not None:
                         coupon_redis = get_redis_connection('coupon')
                         coupon_redis.delete(f"{user_id}:{user_coupon_id}")
-
-                        CouponLog.objects.filter(pk=user_coupon_id).update(status=1, order=order)
+                        # 将优惠券流水关联订单，但并不修改状态（仍然为 未使用，确认订单支付后将会更新为 已使用）
+                        CouponLog.objects.filter(pk=user_coupon_id).update(order=order)
                     # 扣除用户积分，并添加积分流水
                     elif credit is not None and credit > 0:
                         user = User.objects.get(pk=user_id)
                         user.credits -= credit
                         user.save()
-
+                        # 积分流水要等到确认订单支付后再创建
+                        # Credit.objects.create(operation=1, number=credit, user=user)
                         order.credits = credit
-                        Credit.objects.create(operation=1, number=credit, user=user)
 
                 order.save()
                 return order

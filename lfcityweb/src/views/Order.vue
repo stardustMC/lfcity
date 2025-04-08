@@ -155,6 +155,12 @@ const commit_order = ()=>{
   order.commit_order(token).then(response=>{
     store.commit("cart_count", store.state.cart_count - order.course_list.length);
     ElMessage.success("订单创建成功，即将跳转到支付页面...");
+
+    order.alipay_page(token, response.data.order_number).then(response=>{
+      console.log(response.data);
+      let link = response.data.link;
+      window.open(link, "_blank");
+    })
   })
 }
 
