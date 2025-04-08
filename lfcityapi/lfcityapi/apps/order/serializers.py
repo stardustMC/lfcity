@@ -5,12 +5,15 @@ from django_redis import get_redis_connection
 
 from datetime import datetime
 
+import constants
 from coupon.models import CouponLog
 from course.models import Course
 from order.models import Order, OrderDetail
 from coupon.service import get_coupon_dict
 import json
 import logging
+
+from user.models import User, Credit
 
 logger = logging.getLogger("django")
 
@@ -54,7 +57,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                 # 获取用户使用的优惠方式
                 discount_type = request.data.get('discount_type', -1)
                 # 优惠券
-                coupon_dict, credit = {}, 0
+                coupon_dict, credit = None, None
                 user_coupon_id = request.data.get('user_coupon_id', 0)
                 if discount_type == 0:
                     coupon_dict = get_coupon_dict(user_id, user_coupon_id)
@@ -62,7 +65,11 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                         raise ValidationError("优惠券数据不存在！")
                 # 积分
                 elif discount_type == 1:
-                    pass
+                    credit = request.data.get('credit')
+                    if credit is None:
+                        raise ValidationError("缺少积分数据！")
+                    else:
+                        credit = int(credit)
 
                 # 根据id来获取课程列表
                 queryset = Course.objects.filter(is_active=True, is_display=True, pk__in=course_id_list).all()
@@ -84,7 +91,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                     if course.discount:
                         continue
 
-                    if coupon_dict:
+                    if coupon_dict is not None:
                         coupon_type = coupon_dict["coupon_type"]
                         # 检查优惠券是否匹配课程
                         coupon_match_course = True
@@ -109,15 +116,14 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                             elif discount == 2 and course.price < threshold:
                                 price = float((1 - float(coupon_dict["calculation"].strip('*'))) * course.price)
                             max_discount_price = max(max_discount_price, price)
-                    elif credit > 0:
-                        pass
+                    elif credit is not None:
+                        max_discount_price = float(credit / constants.CREDIT_PRICE_RATIO)
                 # 批量创建订单，提高效率
                 OrderDetail.objects.bulk_create(order_details)
 
                 # 为订单补充信息
                 order.real_price = real_price - max_discount_price
                 order.total_price = total_price
-                order.save()
 
                 # 订单生成后，购物车需要将生成订单的商品（也就是勾选的商品）删除掉
                 # 将未勾选的商品记录下来，清空购物车后再加进去
@@ -128,13 +134,24 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                 pipe.hset("cart_%s" % user_id, mapping=cart)
                 pipe.execute()
 
-                # 也要将用户使用的优惠券一同删除，并更新CouponLog记录
+                # 消耗用户的折扣物品
                 if max_discount_price > 0:
-                    coupon_redis = get_redis_connection('coupon')
-                    coupon_redis.delete(f"{user_id}:{user_coupon_id}")
+                    # 删除用户优惠券并修改CouponLog记录（标记为已使用）
+                    if coupon_dict is not None:
+                        coupon_redis = get_redis_connection('coupon')
+                        coupon_redis.delete(f"{user_id}:{user_coupon_id}")
 
-                    CouponLog.objects.filter(pk=user_coupon_id).update(status=1, order=order)
+                        CouponLog.objects.filter(pk=user_coupon_id).update(status=1, order=order)
+                    # 扣除用户积分，并添加积分流水
+                    elif credit is not None and credit > 0:
+                        user = User.objects.get(pk=user_id)
+                        user.credits -= credit
+                        user.save()
 
+                        order.credits = credit
+                        Credit.objects.create(operation=1, number=credit, user=user)
+
+                order.save()
                 return order
             except Exception as e:
                 logger.error(e)

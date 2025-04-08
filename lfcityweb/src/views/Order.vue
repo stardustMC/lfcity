@@ -22,7 +22,8 @@
                   <a href="" class="img-box l"><img :src="course.course_cover" alt=""></a>
                   <dl class="l has-package">
                     <dt>【{{course.get_course_type_display}}】{{course.name}} </dt>
-                    <p class="package-item" v-if="course.discount.price">减免价</p>
+                    <span class="package-item" v-if="course.discount.price">减免价</span>
+                    <span class="package-item" v-else>可用积分：{{course.credits}}</span>
                   </dl>
               </div>
               <div class="item-3">
@@ -39,7 +40,6 @@
               使用优惠券/积分
                 <span v-if="order.use_coupon" @click="order.use_coupon=!order.use_coupon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-394d1fd8=""><path fill="currentColor" d="M831.872 340.864 512 652.672 192.128 340.864a30.592 30.592 0 0 0-42.752 0 29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728 30.592 30.592 0 0 0-42.752 0z"></path></svg></span>
                 <span v-else @click="order.use_coupon=!order.use_coupon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-394d1fd8=""><path fill="currentColor" d="m488.832 344.32-339.84 356.672a32 32 0 0 0 0 44.16l.384.384a29.44 29.44 0 0 0 42.688 0l320-335.872 319.872 335.872a29.44 29.44 0 0 0 42.688 0l.384-.384a32 32 0 0 0 0-44.16L535.168 344.32a32 32 0 0 0-46.336 0z"></path></svg></span>
-<!--                <i :class="order.use_coupon?'el-icon-arrow-up':'el-icon-arrow-down'" @click="order.use_coupon=!order.use_coupon"></i>-->
             </p>
           </div>
           <transition name="el-zoom-in-top">
@@ -77,19 +77,16 @@
             </div>
             <div class="coupon-content code" v-else>
                 <div class="input-box">
-                  <el-input-number placeholder="10积分=1元" v-model="order.credit" :step="1" :min="0" :max="1000"></el-input-number>
+                  <el-input-number placeholder="10积分=1元" v-model="order.credit" :step="1" :min="0" :max="order.max_use_credits"></el-input-number>
                   <a class="convert-btn">兑换</a>
                 </div>
                 <div class="converted-box">
-                  <p>使用积分:<span class="code-num">200</span></p>
-                  <p class="course-title">课程:<span class="c_name">3天JavaScript入门</span>
-                    <span class="discount-cash">100积分抵扣:<em>10</em>元</span>
-                  </p>
-                  <p class="course-title">课程:<span class="c_name">3天JavaScript入门</span>
-                    <span class="discount-cash">100积分抵扣:<em>10</em>元</span>
+                  <p>使用积分:<span class="code-num">{{order.credit}}</span></p>
+                  <p class="course-title" v-for="course in order.credit_course_list">课程:<span class="c_name">{{course.name}}</span>
+                    <span class="discount-cash">{{course.credits}}积分抵扣:<em>{{course.credits / 10}}</em>元</span>
                   </p>
                 </div>
-                <p class="error-msg">本次订单最多可以使用1000积分，您当前拥有200积分。(10积分=1元)</p>
+                <p class="error-msg">本次订单最多可以使用{{order.max_use_credits}}积分，您当前拥有{{order.total_credit}}积分。({{order.credit_ratio}}积分=1元)</p>
                 <p class="tip">说明：每笔订单只能使用一次积分，并只有在部分允许使用积分兑换的课程中才能使用。</p>
               </div>
           </div>
@@ -156,7 +153,6 @@ get_selected_cart_list();
 const commit_order = ()=>{
   let token = localStorage.getItem("token") || sessionStorage.getItem("token");
   order.commit_order(token).then(response=>{
-    console.log(store.state.cart_count, order.course_list.length);
     store.commit("cart_count", store.state.cart_count - order.course_list.length);
     ElMessage.success("订单创建成功，即将跳转到支付页面...");
   })
@@ -165,7 +161,9 @@ const commit_order = ()=>{
 const get_enable_coupons = ()=>{
   let token = localStorage.getItem("token") || sessionStorage.getItem("token");
   order.get_enable_coupons(token).then(response=>{
-    order.coupon_list = response.data;
+    order.coupon_list = response.data.coupons;
+    order.total_credit = response.data.credit;
+    order.credit_ratio = response.data.credit_ratio;
   })
 }
 get_enable_coupons();
@@ -188,6 +186,10 @@ watch(()=>order.coupon, ()=>{
       order.discount_price = max_course_price * (1 - factor);
     }
   }
+})
+
+watch(()=>order.credit, ()=>{
+  order.discount_price = order.credit / 10;
 })
 
 // 监听用户选择的支付方式

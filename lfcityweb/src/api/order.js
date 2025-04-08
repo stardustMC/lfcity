@@ -4,10 +4,13 @@ import http from "../utils/http.js";
 
 const order = reactive({
     course_list: [],     // 购物车中勾选的课程列表
+    user_coupon: false,     // 用户是否使用优惠
     discount_type: -1,    // -1表示未使用优惠，0表示优惠券，1表示积分
     coupon_list: [],     // 用户拥有的可用优惠券列表
     coupon: -1,          // 当前用户选中的优惠券下标
     credit: 0,           // 当前用户选择抵扣的积分
+    total_credit: 0,    // 用户拥有的积分
+    credit_ratio: 0,    // 积分换算价格比例
     fixed: true,         // 底部订单总价是否固定浮动
     pay_type: 0,         // 支付方式
     discount_price: 0,   // （优惠券或积分）优惠金额
@@ -17,6 +20,16 @@ const order = reactive({
             total += course.discount.price || course.price;
         })
         return total;
+    }),
+    max_use_credits: computed(()=>{
+        let max_credit = 0;
+        order.course_list.forEach(course=>{
+            if(!course.discount.price) max_credit += course.credits;
+        });
+        return Math.min(max_credit, order.total_credit);
+    }),
+    credit_course_list: computed(()=>{
+       return order.course_list.filter(course=>!course.discount.price);
     }),
     get_selected_cart_list(token){
         return http.get("/cart/list/", {
@@ -48,7 +61,7 @@ const order = reactive({
                 Authorization: "jwt " + token
             }
         })
-    },
+    }
 })
 
 export {order};

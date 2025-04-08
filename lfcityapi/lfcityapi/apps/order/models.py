@@ -20,6 +20,7 @@ class Order(BaseModel):
 
     total_price = models.FloatField(default=0, verbose_name="订单总价")
     real_price = models.FloatField(default=0, verbose_name="实付金额")
+    credits = models.IntegerField(default=0, verbose_name="使用积分")
     order_number = models.CharField(max_length=64, verbose_name="订单号")
     order_status = models.SmallIntegerField(choices=status_choices, default=0, verbose_name="订单状态")
     pay_type = models.SmallIntegerField(choices=pay_choices, default=1, verbose_name="支付方式")

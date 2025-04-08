@@ -345,3 +345,19 @@ OSS_BUCKET_NAME = "crc-lf-online"    # oss 创建的 BUCKET 名称
 # 添加下面配置后 Django admin 后台上传的 ImageField, FileField 类型的字段都会被自动上传到 oss 的服务器中, 访问路径也会自动替换
 # 如果注释掉的话 oss 的配置会失效, 上传文件会存储到本地, 且访问路径也会变成本地
 DEFAULT_FILE_STORAGE = 'django_oss_storage.backends.OssMediaStorage'
+
+# 支付宝相关配置
+ALIPAY = {
+    # 'gateway': 'https://openapi.alipay.com/gateway.do',   # 真实网关地址
+    'gateway': 'https://openapi-sandbox.dl.alipaydev.com/gateway.do',  # 沙箱网关地址
+    'appid': '9021000146604706',  # 支付应用ID
+    'sign_type': 'RSA2',  # 签证的加密算法
+    'debug': True,  # 沙箱模式下必须设置为True
+    'verbose': True,  # 是否在调试模式下输出调试数据
+    'timeout': 15,  # 请求超时时间，单位：秒
+    "app_private_key_path": BASE_DIR / "apps/payment/keys/app_private_key.pem",  # 应用私钥路径
+    "alipay_public_key_path": BASE_DIR / "apps/payment/keys/alipay_public_key.pem",  # 支付宝公钥路径
+    "return_url": "http://www.lfcity.cn:3000/feedback",  # 同步回调结果通知地址
+    "notify_url": "http://api.lfcity.cn:8000/payments/alipay/notify",  # 异步回调结果通知地址
+}
+ALIPAY_ACCOUNT = "fgtojf0231@sandbox.com"
