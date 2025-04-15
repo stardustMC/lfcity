@@ -46,6 +46,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                 now = datetime.now()
                 order = Order.objects.create(
                     user_id=user_id,
+                    name="ALIPAY",
                     pay_type=validated_data['pay_type'],
                     # pay_link="",
                     # pay_time=now,
@@ -131,7 +132,8 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                 pipe = redis.pipeline()
                 pipe.multi()
                 pipe.delete('cart_%s' % user_id)
-                pipe.hset("cart_%s" % user_id, mapping=cart)
+                if cart:
+                    pipe.hset("cart_%s" % user_id, mapping=cart)
                 pipe.execute()
 
                 if max_discount_price > 0:

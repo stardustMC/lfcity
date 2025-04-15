@@ -42,7 +42,6 @@ class AliPaySDK(AliPay):
             return_url=self.config["return_url"],  # 可选，同步回调地址，必须填写客户端的路径
             notify_url=self.config["notify_url"]  # 可选，不填则使用采用全局默认notify_url，必须填写服务端的路径
         )
-
         return f"{self.config['gateway']}?{order_string}"
 
     def check_sign(self, data):

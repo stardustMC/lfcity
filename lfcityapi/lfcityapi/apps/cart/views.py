@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from course.models import Course
 from course.serializers import CourseSerializer
+from user.models import UserCourse
 
 
 # Create your views here.
@@ -42,6 +43,9 @@ class CartAPIView(APIView):
         if not Course.objects.filter(pk=course_id).exists():
             return Response({"message": "要添加到购物车中的课程不存在!"}, status=status.HTTP_400_BAD_REQUEST)
 
+        if UserCourse.objects.filter(user_id=user_id, course_id=course_id).exists():
+            return Response({"message": "课程已经购买过了，快去学习吧～!"}, status=status.HTTP_400_BAD_REQUEST)
+
         if redis.hexists('cart_%s' % user_id, course_id):
             cart_count = redis.hlen('cart_%s' % user_id)
             return Response({"message": "课程已经在购物车里啦～", "cart_count": cart_count}, status=status.HTTP_208_ALREADY_REPORTED)
@@ -60,9 +64,7 @@ class CartAPIView(APIView):
             return Response({"message": "课程不存在!"}, status=status.HTTP_400_BAD_REQUEST)
 
         if redis.hexists('cart_%s' % user_id, course_id):
-            # print(redis.hget('cart_%s' % user_id, course_id))
             redis.hset('cart_%s' % user_id, course_id, selected)
-            # print(redis.hget('cart_%s' % user_id, course_id))
             return Response({"message": "反选操作成功～"}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "课程未在购物车内!"}, status=status.HTTP_400_BAD_REQUEST)

@@ -128,6 +128,14 @@
 	      </div>
       </div>
     </div>
+
+    <div class="loadding" v-if="order.loading" @click="check_order">
+      <div class="box">
+        <p class="time">{{digit2(parseInt(order.timeout / 60)) }}:{{digit2(order.timeout % 60) }}</p>
+        <i class="el-icon-loading"></i><br>
+        <p>支付完成！点击关闭当前页面</p>
+      </div>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -139,6 +147,7 @@ import Footer from "../components/Footer.vue"
 import {useStore} from "vuex"
 import {order} from "../api/order.js"
 import {ElMessage} from "element-plus";
+import {digit2} from "../utils/helper.js";
 
 let store = useStore();
 
@@ -155,8 +164,18 @@ const commit_order = ()=>{
   order.commit_order(token).then(response=>{
     store.commit("cart_count", store.state.cart_count - order.course_list.length);
     ElMessage.success("订单创建成功，即将跳转到支付页面...");
+    order.order_number = response.data.order_number;
+    order.loading = true;
+    clearInterval(order.timer);
+    order.timer = setInterval(()=>{
+      if(order.timeout > 0) order.timeout--;
+      else{
+        clearInterval(order.timer);
+        ElMessage.info("订单超时未支付！");
+      }
+    }, 1000)
 
-    order.alipay_page(token, response.data.order_number).then(response=>{
+    order.alipay_page(token).then(response=>{
       console.log(response.data);
       let link = response.data.link;
       window.open(link, "_blank");
@@ -173,6 +192,18 @@ const get_enable_coupons = ()=>{
   })
 }
 get_enable_coupons();
+
+// 查询订单状态
+const check_order = ()=>{
+  let token = sessionStorage.token || localStorage.token;
+  order.query_order(token).then(response=>{
+    order.loading = false;
+    // router.push("/user/order");
+  }).catch(error=>{
+    console.log(error);
+    ElMessage.error(error.response.data.message);
+  })
+}
 
 watch(()=>order.coupon, ()=>{
   if(order.coupon < 0) order.discount_price = 0;
@@ -1312,5 +1343,35 @@ body {
 
 .pay-type .list img {
   margin-right: 10px;
+}
+
+.loadding{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(0,0,0,.7);
+}
+.box{
+  width: 300px;
+  height: 150px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 40px;
+  text-align: center;
+  padding-top: 50px;
+  color: #fff;
+}
+.box .time{
+  font-size: 22px;
 }
 </style>

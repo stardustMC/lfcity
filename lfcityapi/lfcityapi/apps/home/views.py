@@ -18,11 +18,10 @@ class NavHeadListView(CacheListAPIView):
     queryset = Nav.objects.filter(is_active=True, is_display=True, position=constants.NAV_HEAD_POSITION).all()
     serializer_class = NavModelSerializer
 
-
 class NavFooterListView(CacheListAPIView):
     queryset = Nav.objects.filter(is_active=True, is_display=True, position=constants.NAV_FOOT_POSITION).all()
     serializer_class = NavModelSerializer
 
-class BannerListView(CacheListAPIView):
+class BannerListView(ListAPIView):
     queryset = Banner.objects.filter(is_active=True, is_display=True).all()
     serializer_class = BannerModelSerializer

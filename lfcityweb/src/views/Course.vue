@@ -167,7 +167,8 @@ const add_course_to_cart = (course_id)=>{
     store.commit("cart_count", response.data.cart_count);
     ElMessage.success(response.data.message);
   }).catch(error=>{
-    ElMessage.error(error.message);
+    console.log(error);
+    ElMessage.info(error.response.data.message);
   })
 }
 

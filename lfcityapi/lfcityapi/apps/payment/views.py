@@ -29,7 +29,6 @@ class AliPayViewSet(ViewSet):
 
         alipay = AliPaySDK()
         link = alipay.page_pay(order_number, order.real_price, order.name)
-        print(link)
         return Response({
             "link": link,
             'pay_type': 0,
