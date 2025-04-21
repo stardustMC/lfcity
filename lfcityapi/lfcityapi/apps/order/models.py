@@ -1,4 +1,3 @@
-from models import models, BaseModel
 from models import BaseModel,models
 from user.models import User
 from course.models import Course
@@ -32,6 +31,20 @@ class Order(BaseModel):
         db_table = "lf_order"
         verbose_name = "订单记录"
         verbose_name_plural = verbose_name
+
+    @property
+    def coupon(self):
+        from coupon.models import CouponLog
+        order_coupon = CouponLog.objects.filter(order_id=self.id).first()
+        if not order_coupon:
+            return {}
+        return {
+            'id': order_coupon.coupon_id,
+            'start_time': order_coupon.coupon.start_time,
+            'end_time': order_coupon.coupon.end_time,
+            "calculation": order_coupon.coupon.calculation,
+            'get_discount_display': order_coupon.coupon.get_discount_display,
+        }
 
     def __str__(self):
         return "%s,总价: %s,实付: %s" % (self.name, self.total_price, self.real_price)

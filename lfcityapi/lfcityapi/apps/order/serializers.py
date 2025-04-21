@@ -8,9 +8,9 @@ from datetime import datetime
 import constants
 from coupon.models import CouponLog
 from course.models import Course
+from course.serializers import CourseSerializer
 from order.models import Order, OrderDetail
 from coupon.service import get_coupon_dict
-import json
 import logging
 
 from user.models import User, Credit
@@ -158,3 +158,19 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                 logger.error(e)
                 transaction.rollback(t1)
                 raise ValidationError("订单创建失败！")
+
+class OrderDetailSerializer(serializers.ModelSerializer):
+    course = CourseSerializer()
+
+    class Meta:
+        model = OrderDetail
+        fields = ['id', 'course', 'price', 'real_price', 'discount_name']
+
+class OrderSerializer(serializers.ModelSerializer):
+    order_courses = OrderDetailSerializer(many=True, read_only=True)
+    # coupon = serializers.ModelSerializer(source='to_coupon.coupon', read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ['id', 'real_price', 'total_price', 'order_number', 'credits', 'get_order_status_display',
+                  'pay_time', 'create_time', 'coupon', 'order_courses', 'order_status']

@@ -145,7 +145,7 @@ import {reactive,watch} from "vue"
 import Header from "../components/Header.vue"
 import Footer from "../components/Footer.vue"
 import {useStore} from "vuex"
-import {order} from "../api/order.js"
+import {order, detail} from "../api/order.js"
 import {ElMessage} from "element-plus";
 import {digit2} from "../utils/helper.js";
 

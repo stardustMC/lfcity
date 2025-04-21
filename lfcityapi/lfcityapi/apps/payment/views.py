@@ -43,7 +43,7 @@ class AliPayViewSet(ViewSet):
         if not success:
             return Response({"message": "通知结果不存在！"}, status=status.HTTP_400_BAD_REQUEST)
 
-        order_number = data.get('order_number')
+        order_number = data.get('out_trade_no')
         order = Order.objects.filter(order_number=order_number).first()
         if order is None:
             return Response({"message": "订单不存在！"}, status=status.HTTP_404_NOT_FOUND)

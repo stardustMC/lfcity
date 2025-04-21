@@ -31,7 +31,7 @@ class Coupon(BaseModel):
     # per_limit = models.SmallIntegerField(default=1, verbose_name="每人限制领取数量")
     calculation = models.CharField(verbose_name="优惠公式", max_length=200, help_text="""
             *号开头表示折扣价，例如*0.82表示八二折；<br>
-            -号开头表示减免价,例如-10表示在总价基础上减免10元<br>   
+            -号开头表示减免价,例如-10表示在总价基础上减免10元<br>
             """)
 
     class Meta:

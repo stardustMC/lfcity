@@ -38,8 +38,8 @@
                 </span>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item :icon="UserFilled">学习中心</el-dropdown-item>
-                  <el-dropdown-item :icon="List">订单列表</el-dropdown-item>
+                  <router-link to="/user/course"><el-dropdown-item :icon="UserFilled">学习中心</el-dropdown-item></router-link>
+                  <router-link to="/user/order"><el-dropdown-item :icon="List">订单列表</el-dropdown-item></router-link>
                   <router-link to="/user"><el-dropdown-item :icon="Setting">个人设置</el-dropdown-item></router-link>
                   <el-dropdown-item :icon="Position" @click="on_logout">注销登录</el-dropdown-item>
                 </el-dropdown-menu>

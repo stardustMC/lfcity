@@ -37,7 +37,29 @@ const routes = [
         },
         path: "/user",
         name: "User",
-        component: () => import("../views/User.vue")
+        component: () => import("../views/User.vue"),
+        children: [
+            {
+                meta: {
+                    title: "lfcity-订单列表",
+                    keepalive: true,
+                    authorization: true,
+                },
+                path: "order",
+                name: "User-Order",
+                component: () => import("../components/user/Order.vue"),
+            },
+            {
+                meta: {
+                    title: "lfcity-课程列表",
+                    keepalive: true,
+                    authorization: true,
+                },
+                path: "course",
+                name: "User-Course",
+                component: () => import("../components/user/Course.vue"),
+            },
+        ]
     },
     {
         meta: {
@@ -76,6 +98,16 @@ const routes = [
         path: "/order",
         name: "Order",
         component: () => import("../views/Order.vue")
+    },
+    {
+        meta: {
+            title: "lfcity-支付成功",
+            keepalive: true,
+            authorization: true,
+        },
+        path: "/feedback",
+        name: "Feedback",
+        component: () => import("../views/Feedback.vue")
     },
 ]
 

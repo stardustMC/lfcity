@@ -14,10 +14,12 @@ const order = reactive({
     fixed: true,         // 底部订单总价是否固定浮动
     pay_type: 0,         // 支付方式
     discount_price: 0,   // （优惠券或积分）优惠金额
+
     timeout: 60 * 15,   // 订单支付倒计时
     timer: null,        // 倒计时计时器
     loading: false,      // 等待支付中
     order_number: "",   // 订单号
+
     total_price: computed(()=>{
         let total = 0.0;
         order.course_list.forEach(course=>{
@@ -73,20 +75,27 @@ const order = reactive({
             }
         })
     },
-    alipay_feedback(token){
-        return http.get(`/payment/alipay/feedback/${this.order_number}/`, {
-            headers: {
-                Authorization: "jwt " + token
-            }
-        })
-    },
     query_order(token){
         return http.get(`/payment/alipay/query/${this.order_number}/`, {
             headers: {
                 Authorization: "jwt " + token
             }
         })
-    }
+    },
 })
 
-export {order};
+const detail = reactive({
+    pay_time: "",
+    real_price: 0.0,
+    courses: [],
+    alipay_feedback(token){
+        let query_string = window.location.search;
+        return http.get(`/payment/alipay/result/${query_string}`, {
+            headers: {
+                Authorization: "jwt " + token
+            }
+        })
+    },
+})
+
+export {order, detail};
