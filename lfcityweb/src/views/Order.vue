@@ -133,7 +133,7 @@
       <div class="box">
         <p class="time">{{digit2(parseInt(order.timeout / 60)) }}:{{digit2(order.timeout % 60) }}</p>
         <i class="el-icon-loading"></i><br>
-        <p>支付完成！点击关闭当前页面</p>
+        <p>支付完成后，点击关闭当前页面</p>
       </div>
     </div>
     <Footer/>
@@ -180,6 +180,8 @@ const commit_order = ()=>{
       let link = response.data.link;
       window.open(link, "_blank");
     })
+  }).catch(error=>{
+    ElMessage.error("订单创建失败，请确认至少勾选一件商品");
   })
 }
 

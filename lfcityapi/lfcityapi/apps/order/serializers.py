@@ -2,6 +2,9 @@ import logging
 import constants
 from datetime import datetime
 
+from user.models import User
+from .tasks import order_timeout
+
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from django.db import transaction
@@ -12,8 +15,6 @@ from course.models import Course
 from course.serializers import CourseSerializer
 from order.models import Order, OrderDetail
 from coupon.service import get_coupon_dict
-
-from user.models import User
 
 
 logger = logging.getLogger("django")
@@ -43,7 +44,6 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                 if len(course_id_list) < 1:
                     raise ValidationError("购物车中不存在勾选的商品")
                 # 首先创建订单，这样才可以关联订单课程
-                # TODO: 这里的订单缺少一些信息（如价格），而支付链接，后续开发完成后补充
                 now = datetime.now()
                 order = Order.objects.create(
                     user_id=user_id,
@@ -154,6 +154,8 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                         order.credits = credit
 
                 order.save()
+                # 将订单加入定时任务，超时自动取消
+                order_timeout.apply_async(kwargs={"order_id": order.id}, countdown=constants.ORDER_TIMEOUT)
                 return order
             except Exception as e:
                 logger.error(e)

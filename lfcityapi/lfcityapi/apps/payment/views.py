@@ -78,7 +78,7 @@ class AliPayViewSet(ViewSet):
             except Exception as e:
                 logger.error(f"订单数据同步过程出错： {e}")
                 transaction.rollback(t1)
-                return Response({"errmsg": "意料之外的错误发生了！请联系客服处理"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response({"message": "意料之外的错误发生了！请联系客服处理"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         serializer = CourseSerializer(course_list, many=True)
         return Response({
@@ -92,9 +92,9 @@ class AliPayViewSet(ViewSet):
         try:
             order = Order.objects.get(order_number=order_number)
             if order.order_status > 1:
-                return Response({"errmsg": "订单超时或已取消！"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message": "订单超时或已取消！"}, status=status.HTTP_400_BAD_REQUEST)
         except Order.DoesNotExist:
-            return Response({"errmsg": "订单不存在！"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "订单不存在！"}, status=status.HTTP_400_BAD_REQUEST)
 
         # 获取当前订单相关的课程信息，用于返回给客户端
         order_courses = order.order_courses.all()
@@ -139,13 +139,13 @@ class AliPayViewSet(ViewSet):
                     except Exception as e:
                         logger.error(f"订单支付处理同步结果发生未知错误：{e}")
                         transaction.savepoint_rollback(save_id)
-                        return Response({"errmsg": "当前订单支付未完成！请联系客服工作人员！"},
+                        return Response({"message": "当前订单支付未完成！请联系客服工作人员！"},
                                         status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             else:
                 """当前订单未支付"""
-                return Response({"errmsg": "当前订单未支付！"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message": "当前订单未支付！"}, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response({"errmsg": "当前订单已支付！"})
+        return Response({"message": "当前订单已支付！"})
 
     def notify_result(self, request):
         """支付宝支付结果的异步通知处理"""
