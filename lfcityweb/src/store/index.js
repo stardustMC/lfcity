@@ -24,6 +24,7 @@ const store = createStore({
     },
     mutations:{
         login(state, payload){
+            console.log(payload);
             state.user = payload;
         },
         logout(state){

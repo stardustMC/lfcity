@@ -8,7 +8,8 @@ from course.models import Course, CourseDirection, CourseCategory
 from course.pagination import CourseListPagination
 from course.serializers import CourseSerializer, CourseDirectionSerializer, CourseCategorySerializer, \
     CourseDetailSerializer
-from user.models import UserCourse, User
+from user.models import UserCourse
+from user.serializers import UserCourseSerializer
 
 
 # Create your views here.
@@ -57,18 +58,16 @@ class CourseRetrieveModelView(RetrieveAPIView):
 class CourseUserListView(CourseListView):
     permission_classes = (IsAuthenticated,)
     authentication_classes = (JSONWebTokenAuthentication, )
+    serializer_class = UserCourseSerializer
 
     def get_queryset(self):
         user_id = self.request.user.id
-        user = User.objects.get(id=user_id)
-        user_courses = user.user_courses.filter(is_active=True, is_display=True).all()
+        queryset = UserCourse.objects.select_related('course').filter(is_active=True, is_display=True, user_id=user_id)
 
         course_type = int(self.request.query_params.get('type', -1))
         if course_type > -1:
-            queryset = [item.course for item in user_courses if item.course.course_type == course_type]
-        else:
-            queryset = [item.course for item in user_courses]
-        return queryset
+            queryset = queryset.filter(course__course_type=course_type)
+        return queryset.all()
 
 class CourseTypeChoiceAPIView(APIView):
     def get(self, request):

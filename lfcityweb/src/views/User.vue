@@ -7,10 +7,10 @@
             <div class="user-pic-bg"><img class="img" :src="store.state.user.avatar" alt=""></div>
         </div>
         <div class="user-info-right">
-          <h3 class="user-name clearfix"><span>墨落</span></h3>
+          <h3 class="user-name clearfix"><span>{{store.state.user.nickname}}</span></h3>
           <p class="about-info">
-            <span>男</span>
-            <span>CG影视动画师</span>
+            <span>{{store.state.user.gender || "保密"}}</span>
+            <span>{{store.state.user.profession || "保密"}}</span>
           </p>
         </div>
         <div class="user-sign hide">

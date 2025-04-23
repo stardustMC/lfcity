@@ -5,6 +5,15 @@
         <div class="course-info">
           <div class="wrap-left">
             <!-- 课程封面或封面商品 -->
+            <AliPlayerV3
+                ref="player"
+                class="h-64 md:h-96 w-full rounded-lg"
+                style="height: 100%; width: 100%;"
+                :options="options"
+                @play="onPlay($event)"
+                @pause="onPause($event)"
+                @playing="onPlaying($event)"
+            />
           </div>
           <div class="wrap-right">
             <h3 class="course-name">{{detail.info.name}}</h3>
@@ -95,6 +104,7 @@ import {format_date, format_duration, digit2} from "../utils/helper.js"
 import cart from "../api/cart.js";
 import store from "../store/index.js";
 import {ElMessage} from "element-plus";
+import { AliPlayerV3 } from "vue-aliplayer-v3"
 
 let route = useRoute();
 
@@ -121,6 +131,31 @@ const state = reactive({
   // course_id: route.params.id,
   tabIndex: 2,
 })
+
+const options = reactive({
+  source: detail.info.course_video,
+  cover: detail.info.course_cover,
+  autoplay: false,
+  preload: true,
+  isLive: false, //切换为直播流的时候必填true
+  // format: 'm3u8'  //切换为直播流的时候必填
+})
+
+let player = ref(null);
+const onPlay = (event)=>{
+  // console.log("播放视频");
+  // console.log(player.value.getCurrentTime());
+}
+
+const onPause = (event)=>{
+  // console.log("暂停播放");
+  // console.log(player.value.getCurrentTime());
+}
+
+const onPlaying = (event)=>{
+  // console.log("播放中");
+  // console.log(player.value.getCurrentTime());
+}
 
 </script>
 

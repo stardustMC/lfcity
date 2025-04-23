@@ -13,23 +13,24 @@
       <div class="allcourse-content">
         <div class="courseitem" v-for="course in user.course_list">
           <div class="img-box">
-            <a href=""><img :alt="course.name" :src="course.course_cover" /> </a>
+            <a href=""><img :alt="course.course.name" :src="course.course.course_cover" /> </a>
           </div>
           <div class="info-box">
             <div class="title">
-              <span>{{course.get_course_type_display}}</span>
-              <a href="" class="hd">{{course.name}}</a>
+              <span>{{course.course.get_course_type_display}}</span>
+              <a href="" class="hd">{{course.course.name}}</a>
             </div>
             <div class="study-info">
               <span class="i-left">已学0%</span>
-              <span class="i-mid">用时13分</span>
+              <span class="i-mid">用时{{format_duration(course.study_time)}}</span>
               <span class="i-right">学习至7.01 课程回顾</span>
             </div>
             <div class="catog-points">
               <span> <a href="">笔记 <i>0</i></a> </span>
               <span class="i-mid"> <a href="">代码 <i>0</i></a> </span>
               <span class="i-right"> <a href="">问答 <i>0</i></a> </span>
-              <a href="" class="continute-btn">继续学习</a>
+<!--              <a href="" class="continute-btn">继续学习</a>-->
+              <router-link :to="'/detail/' + course.course.id"><span class="continute-btn">继续学习</span></router-link>
             </div>
             <div class="share-box clearfix">
               <div class="show-btn">
@@ -63,6 +64,7 @@
 <script setup>
 import user from "../../api/user.js"
 import {watch} from "vue";
+import {format_duration} from "../../utils/helper.js";
 
 
 const get_course_types = ()=>{

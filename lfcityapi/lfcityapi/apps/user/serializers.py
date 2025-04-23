@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from user.models import User
+from user.models import User, UserCourse
 
 
 class UserCreateModelSerializer(serializers.ModelSerializer):
@@ -32,3 +32,11 @@ class UserCreateModelSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("两次密码不一致或为空!")
 
         return validated_data
+
+from course.serializers import CourseSerializer
+class UserCourseSerializer(serializers.ModelSerializer):
+    course = CourseSerializer(read_only=True)
+
+    class Meta:
+        model = UserCourse
+        fields = ['id', 'course', 'study_time']

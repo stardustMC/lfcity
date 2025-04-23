@@ -6,11 +6,19 @@ from models import BaseModel
 
 # Create your models here.
 class User(AbstractUser):
+    gender_choices = (
+        (0, '保密'),
+        (1, '男'),
+        (2, '女'),
+        (3, '扶他'),
+    )
     phone = models.CharField(max_length=11, unique=True, null=True, blank=True, verbose_name="手机号码")
     nickname = models.CharField(max_length=20, default="小白", verbose_name="昵称")
     balance = models.FloatField(default=0.0, verbose_name="余额", help_text="账户余额，可购买课程")
     credits = models.IntegerField(default=0, verbose_name="积分", help_text="账户积分，可抵扣价格")
     avatar = models.ImageField(upload_to="avatar/%Y", default="", null=True, verbose_name="个人头像")
+    gender = models.IntegerField(choices=gender_choices, default=0, verbose_name="性别")
+    profession = models.CharField(default="", verbose_name="职业", max_length=200)
 
     class Meta:
         db_table = "lf_user"

@@ -313,6 +313,7 @@ LOGGING = {
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': timedelta(days=7),
+    'JWT_PAYLOAD_HANDLER': 'lfcityapi.utils.authenticate.jwt_payload_handler',
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'lfcityapi.utils.authenticate.jwt_response_payload_handler',
 }
 

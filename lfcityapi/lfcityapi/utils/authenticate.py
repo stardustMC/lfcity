@@ -1,8 +1,22 @@
 from django_redis import get_redis_connection
 from django.db.models import Q
 from user.models import User
-from django.contrib.auth.backends import ModelBackend, UserModel
+from django.contrib.auth.backends import ModelBackend
+from rest_framework_jwt.utils import jwt_payload_handler as payload_handler
 
+def jwt_payload_handler(user):
+    payload = payload_handler(user)
+    if hasattr(user, 'avatar'):
+        payload['avatar'] = user.avatar.url if user.avatar else ""
+    if hasattr(user, 'phone'):
+        payload['phone'] = user.phone
+    if hasattr(user, 'nickname'):
+        payload['nickname'] = user.nickname
+    if hasattr(user, 'gender'):
+        payload['gender'] = user.get_gender_display() if user.gender else ""
+    if hasattr(user, 'profession'):
+        payload['profession'] = user.profession
+    return payload
 
 def jwt_response_payload_handler(token, user=None, request=None):
     redis = get_redis_connection('cart')
