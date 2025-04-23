@@ -39,7 +39,7 @@ class OrderListAPIView(ListAPIView):
         if status > -1:
             queryset = queryset.filter(order_status=status)
 
-        return queryset.all()
+        return queryset.order_by('id').all()
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()

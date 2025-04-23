@@ -13,6 +13,7 @@ const course = reactive({
     category_list: [],
     course_list: [],
     timer: null,
+    text: "",
     get_directions(){
         return http.get("/course/directions/");
     },
@@ -28,6 +29,17 @@ const course = reactive({
         return http.get(`/course/${this.direction}/${this.category}/`, {
             params
         });
+    },
+    search_course(){
+        let params = {
+            text: this.text,
+            page: this.page,
+            size: this.size,
+            ordering: this.ordering,
+        }
+        return http.get(`/course/search/`, {
+            params
+        })
     },
     start_timer(){
         clearInterval(this.timer);

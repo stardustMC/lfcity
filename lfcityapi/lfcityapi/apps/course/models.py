@@ -1,3 +1,5 @@
+import json
+
 from django.utils.safestring import mark_safe
 from datetime import datetime
 from models import models,BaseModel
@@ -135,6 +137,9 @@ class Course(BaseModel):
             "price": round(discount_price, 2),
             "expire": int(course_activity_discount.activity.end_time.timestamp() - now.timestamp()), # 活动还剩多长时间结束
         } if discount_price else {}
+
+    def discount_json(self):
+        return json.dumps(self.discount)
 
     class Meta:
         db_table = "lf_course_info"

@@ -72,3 +72,17 @@ class CourseUserListView(CourseListView):
 class CourseTypeChoiceAPIView(APIView):
     def get(self, request):
         return Response(Course.course_types)
+
+
+from drf_haystack.viewsets import HaystackViewSet
+from drf_haystack.filters import HaystackFilter
+from .serializers import CourseIndexHaystackSerializer
+
+class CourseSearchViewSet(HaystackViewSet):
+    """课程信息全文搜索视图类"""
+    # 指定本次搜索的最终真实数据的保存模型
+    index_models = [Course]
+    serializer_class = CourseIndexHaystackSerializer
+    filter_backends = [OrderingFilter, HaystackFilter]
+    ordering_fields = ('id', 'students', 'orders')
+    pagination_class = CourseListPagination

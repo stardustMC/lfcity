@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'ckeditor',
     'stdimage',
+    'haystack',
 
     'home',
     'user',
@@ -77,7 +78,9 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -386,3 +389,18 @@ CELERYD_TIME_LIMIT = 10 * 60
 CELERY_DISABLE_RATE_LIMITS = True
 # celery的任务结果内容格式
 CELERY_ACCEPT_CONTENT = ['json', 'pickle']
+
+# haystack连接elasticsearch的配置信息
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        # haystack操作es的核心模块
+        'ENGINE': 'haystack.backends.elasticsearch7_backend.Elasticsearch7SearchEngine',
+        # es服务端地址
+        'URL': 'http://127.0.0.1:9200/',
+        # es索引仓库
+        'INDEX_NAME': 'haystack',
+    },
+}
+
+# 当mysqlORM操作数据库改变时，自动更新es的索引，否则es的索引会找不到新增的数据
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

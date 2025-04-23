@@ -10,8 +10,10 @@
                 </div>
                 <div class="actual-header-search">
                     <div class="search-inner">
-                        <input class="actual-search-input" placeholder="搜索感兴趣的实战课程内容" type="text" autocomplete="off">
-                        <img class="actual-search-button" src="../assets/search.svg" />
+                        <input class="actual-search-input" v-model="course.text" placeholder="搜索感兴趣的实战课程内容" type="text" autocomplete="off">
+                        <span @click="search_course">
+                          <img class="actual-search-button" src="../assets/search.svg" alt="搜索" />
+                        </span>
                     </div>
                     <div class="actual-searchtags">
                     </div>
@@ -125,13 +127,28 @@ get_course_categories();
 
 const get_course_list = ()=>{
   course.get_course_list().then(response=>{
-    console.log(response.data.results);
+    // console.log(response.data.results);
     course.course_list = response.data.results;
     course.count = response.data.count;
     course.start_timer();
   })
 };
 get_course_list();
+
+const search_course = ()=>{
+  if(!course.text){
+    ElMessage.warning("搜索内容不能为空");
+    return
+  }
+  course.search_course().then(response=>{
+    // console.log(response.data.results);
+    course.course_list = response.data.results;
+    course.count = response.data.count;
+    course.start_timer();
+  }).catch(error=>{
+    ElMessage.error(error.response.data.message);
+  })
+};
 
 const page_change = (page)=>{
   course.page = page;
