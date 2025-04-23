@@ -1,19 +1,20 @@
-from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
-from django.db import models, transaction
-from django_redis import get_redis_connection
-
+import logging
+import constants
 from datetime import datetime
 
-import constants
+from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
+from django.db import transaction
+from django_redis import get_redis_connection
+
 from coupon.models import CouponLog
 from course.models import Course
 from course.serializers import CourseSerializer
 from order.models import Order, OrderDetail
 from coupon.service import get_coupon_dict
-import logging
 
-from user.models import User, Credit
+from user.models import User
+
 
 logger = logging.getLogger("django")
 

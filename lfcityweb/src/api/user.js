@@ -16,6 +16,12 @@ const user = reactive({
     order_page: 1,
 
     course_list: [],
+    type_choices: [],
+    course_count: 0,
+    course_type: -1,
+    course_size: 5,
+    course_page: 1,
+
     login(){
         return http.post("/user/login/", {
             username: this.username,
@@ -53,6 +59,26 @@ const user = reactive({
     },
     cancel_order(token, order_number){
         return http.post(`/order/cancel/${order_number}/`, {}, {
+            headers: {
+                Authorization: "jwt " + token
+            }
+        })
+    },
+    get_course_list(token){
+        let params = {
+            page: this.course_page,
+            size: this.course_size,
+            type: this.course_type,
+        }
+        return http.get("/course/list/", {
+            params,
+            headers: {
+                Authorization: "jwt " + token
+            }
+        })
+    },
+    get_course_type_choices(token){
+        return http.get("/course/types/", {
             headers: {
                 Authorization: "jwt " + token
             }
