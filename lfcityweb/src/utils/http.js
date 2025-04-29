@@ -1,8 +1,8 @@
 import axios from "axios";
-
+import settings from "../settings.js"
 
 const http = axios.create({
-    baseURL: "http://api.lfcity.cn:8000/",
+    baseURL: settings.host,
     withCredentials: false,
 });
 
